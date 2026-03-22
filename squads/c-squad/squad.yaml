@@ -1,0 +1,87 @@
+squad:
+  code: c-squad
+  name: C Squad
+  description: Systems programming in C — embedded, OS, drivers, memory management, and safety-critical development
+  icon: cpu
+  version: "1.0.0"
+  category: development
+  tags:
+    - c
+    - systems
+    - embedded
+    - rtos
+    - memory-management
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Systems programmers, embedded developers, and OS engineers"
+  platform: "Report"
+  format: "c-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: c-chief
+      name: C Chief
+      icon: cpu
+      prompt: agents/c-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: systems-architect
+      name: Systems Architect
+      icon: layers
+      prompt: agents/systems-architect.agent.md
+    - id: memory-specialist
+      name: Memory Specialist
+      icon: database
+      prompt: agents/memory-specialist.agent.md
+    - id: embedded-engineer
+      name: Embedded Engineer
+      icon: zap
+      prompt: agents/embedded-engineer.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: c-chief
+        label: Diagnose the systems challenge and classify the technical domain
+        execution: inline
+      - id: step-02
+        agent: c-chief
+        label: Route to specialist agents for domain-specific analysis
+        deliverFrom: c-chief
+        execution: inline
+      - id: step-03
+        agent: c-chief
+        label: Architect the solution with safety, memory, and performance constraints
+        deliverFrom: c-chief
+        execution: inline
+      - id: step-04
+        agent: c-chief
+        label: Implement and review code against CERT C and MISRA C standards
+        deliverFrom: c-chief
+        execution: inline
+      - id: step-05
+        agent: c-chief
+        label: Final review and C Development Report delivery
+        deliverFrom: c-chief
+        execution: inline
