@@ -1,0 +1,11 @@
+{
+  "name": "expxagents-marketplace-squads",
+  "version": "1.0.0",
+  "description": "Community squads for the ExpxAgents marketplace",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "publish-all": "node scripts/publish-all.js"
+  },
+  "license": "MIT"
+}
