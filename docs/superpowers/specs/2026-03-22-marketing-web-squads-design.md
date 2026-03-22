@@ -49,7 +49,19 @@ All agent `.md` files must follow the full structure established by existing squ
 - YAML frontmatter: `base_agent`, `id`, `name`, `icon`, `execution`, `skills`
 - Sections: `## Role`, `## Calibration`, `## Instructions`, `## Routing Matrix` (chiefs only), `## Expected Input`, `## Expected Output`, `## Quality Criteria`, `## Anti-Patterns`
 
-The `base_agent` for all agents in these 3 squads is `marketing-strategist`.
+**The `id` field uses the fully qualified path format:** `"squads/{squad-code}/agents/{agent-id}"` (e.g., `"squads/institutional-web-squad/agents/institutional-web-chief"`).
+
+### Base agents (per squad)
+
+Following the project pattern where each squad has its own domain-specific base_agent:
+
+| Squad | base_agent | Rationale |
+|-------|-----------|-----------|
+| institutional-web-squad | `web-strategist` | Reflects information architecture and multi-page site strategy focus |
+| landing-page-squad | `conversion-strategist` | Reflects conversion optimization and single-page focus |
+| sales-page-squad | `sales-strategist` | Reflects persuasion, offer construction, and sales psychology focus |
+
+This follows the existing convention: brand-squad uses `brand-strategist`, copy-squad uses `copywriter`, traffic-masters uses `media-strategist`.
 
 ---
 
@@ -156,7 +168,7 @@ squad:
 
 #### 1. institutional-web-chief — Web Strategist Chief
 
-**Icon:** `globe` | **Base Agent:** `marketing-strategist`
+**Icon:** `globe` | **Base Agent:** `web-strategist`
 
 **Role:** Receives the website briefing, diagnoses site type (corporate, institutional, portfolio, multi-page), identifies target audience and business objectives, routes to the right specialists, and synthesizes a comprehensive Web Strategy Report.
 
@@ -177,7 +189,7 @@ squad:
 
 #### 2. information-architect — Information Architect
 
-**Icon:** `sitemap` | **Base Agent:** `marketing-strategist`
+**Icon:** `sitemap` | **Base Agent:** `web-strategist`
 
 **Role:** Designs site structure, navigation hierarchy, sitemap, content taxonomy, and page-level content blocks. Applies information architecture principles to ensure users find what they need in 3 clicks or fewer.
 
@@ -187,7 +199,7 @@ squad:
 
 #### 3. ux-strategist — UX Strategist
 
-**Icon:** `users` | **Base Agent:** `marketing-strategist`
+**Icon:** `users` | **Base Agent:** `web-strategist`
 
 **Role:** Designs user flows, conceptual wireframes, usability guidelines, and accessibility requirements. Focuses on how users move through the site and complete key tasks.
 
@@ -197,7 +209,7 @@ squad:
 
 #### 4. ui-art-director — UI Art Director
 
-**Icon:** `paintbrush` | **Base Agent:** `marketing-strategist`
+**Icon:** `paintbrush` | **Base Agent:** `web-strategist`
 
 **Role:** Defines visual direction including design system foundations, color palette strategy, typography hierarchy, grid systems, spacing, and moodboard direction. Does not produce final designs but provides clear creative direction for designers.
 
@@ -207,7 +219,7 @@ squad:
 
 #### 5. content-strategist — Content Strategist
 
-**Icon:** `file-text` | **Base Agent:** `marketing-strategist`
+**Icon:** `file-text` | **Base Agent:** `web-strategist`
 
 **Role:** Defines content strategy per page — what content each page needs, content hierarchy, tone of voice per section, microcopy guidelines, and content governance rules.
 
@@ -217,7 +229,7 @@ squad:
 
 #### 6. seo-specialist — SEO Specialist
 
-**Icon:** `search` | **Base Agent:** `marketing-strategist`
+**Icon:** `search` | **Base Agent:** `web-strategist`
 
 **Role:** Defines on-page SEO strategy including heading structure, meta tag strategy, URL structure, schema markup recommendations, internal linking strategy, and Core Web Vitals targets.
 
@@ -227,7 +239,7 @@ squad:
 
 #### 7. brand-alignment-specialist — Brand Alignment Specialist
 
-**Icon:** `check-circle` | **Base Agent:** `marketing-strategist`
+**Icon:** `check-circle` | **Base Agent:** `web-strategist`
 
 **Role:** Ensures the website aligns with existing brand identity, brandbook guidelines, and visual standards. Reviews all design and content decisions through the lens of brand consistency.
 
@@ -237,7 +249,7 @@ squad:
 
 #### 8. web-analytics-planner — Web Analytics Planner
 
-**Icon:** `bar-chart` | **Base Agent:** `marketing-strategist`
+**Icon:** `bar-chart` | **Base Agent:** `web-strategist`
 
 **Role:** Designs the measurement strategy — what to track, which KPIs matter, event tagging plan, dashboard structure, and success criteria for the site launch.
 
@@ -350,7 +362,7 @@ squad:
 
 #### 1. landing-page-chief — Conversion Strategist Chief
 
-**Icon:** `target` | **Base Agent:** `marketing-strategist`
+**Icon:** `target` | **Base Agent:** `conversion-strategist`
 
 **Role:** Receives the landing page briefing, diagnoses conversion objective (lead capture, webinar registration, download, free trial, etc.), identifies the target audience and funnel stage, routes to specialists, and delivers a Landing Page Strategy Report.
 
@@ -371,7 +383,7 @@ squad:
 
 #### 2. conversion-architect — Conversion Architect
 
-**Icon:** `layout` | **Base Agent:** `marketing-strategist`
+**Icon:** `layout` | **Base Agent:** `conversion-strategist`
 
 **Role:** Designs the page structure — block sequence, content hierarchy, above-the-fold strategy, scroll flow, and section-by-section blueprint. Every structural decision optimizes for the single conversion goal.
 
@@ -381,7 +393,7 @@ squad:
 
 #### 3. persuasion-copywriter — Persuasion Copywriter
 
-**Icon:** `edit` | **Base Agent:** `marketing-strategist`
+**Icon:** `edit` | **Base Agent:** `conversion-strategist`
 
 **Role:** Crafts headlines, subheadlines, bullet points, CTAs, and microcopy. Every word is calibrated for the specific conversion goal and audience awareness level.
 
@@ -391,7 +403,7 @@ squad:
 
 #### 4. cro-specialist — CRO Specialist
 
-**Icon:** `trending-up` | **Base Agent:** `marketing-strategist`
+**Icon:** `trending-up` | **Base Agent:** `conversion-strategist`
 
 **Role:** Analyzes the page design through conversion rate optimization lenses — identifying friction points, cognitive load issues, decision fatigue risks, and optimization opportunities.
 
@@ -401,7 +413,7 @@ squad:
 
 #### 5. landing-ux-designer — Landing Page UX/UI Designer
 
-**Icon:** `monitor` | **Base Agent:** `marketing-strategist`
+**Icon:** `monitor` | **Base Agent:** `conversion-strategist`
 
 **Role:** Defines visual layout direction for high-conversion pages — form design, CTA placement and styling, visual hierarchy, whitespace strategy, contrast ratios, and responsive behavior.
 
@@ -411,7 +423,7 @@ squad:
 
 #### 6. social-proof-strategist — Social Proof Strategist
 
-**Icon:** `star` | **Base Agent:** `marketing-strategist`
+**Icon:** `star` | **Base Agent:** `conversion-strategist`
 
 **Role:** Designs the social proof strategy — what types of proof to use, where to place them, how to format them, and how to maximize their persuasive impact.
 
@@ -421,7 +433,7 @@ squad:
 
 #### 7. lead-magnet-architect — Lead Magnet Architect
 
-**Icon:** `gift` | **Base Agent:** `marketing-strategist`
+**Icon:** `gift` | **Base Agent:** `conversion-strategist`
 
 **Role:** Designs the lead magnet or capture offer — what to offer, how to frame the value proposition, the hook that drives opt-in, and alignment with the broader funnel.
 
@@ -431,7 +443,7 @@ squad:
 
 #### 8. ab-testing-planner — A/B Testing Planner
 
-**Icon:** `git-branch` | **Base Agent:** `marketing-strategist`
+**Icon:** `git-branch` | **Base Agent:** `conversion-strategist`
 
 **Role:** Designs the testing roadmap — what to test first, hypothesis formulation, variant design, sample size requirements, and metrics hierarchy (primary, secondary, guardrail).
 
@@ -497,7 +509,7 @@ squad:
       prompt: agents/objection-handler.agent.md
     - id: sales-ux-designer
       name: Sales Page UX/UI Designer
-      icon: monitor
+      icon: smartphone
       prompt: agents/sales-ux-designer.agent.md
     - id: vsl-strategist
       name: VSL Strategist
@@ -544,7 +556,7 @@ squad:
 
 #### 1. sales-page-chief — Sales Page Architect Chief
 
-**Icon:** `dollar-sign` | **Base Agent:** `marketing-strategist`
+**Icon:** `dollar-sign` | **Base Agent:** `sales-strategist`
 
 **Role:** Receives the sales page briefing, diagnoses sale type (evergreen, launch, high-ticket, low-ticket, webinar replay, etc.), identifies the audience temperature (cold, warm, hot), routes to specialists, and delivers a Sales Page Strategy Report.
 
@@ -565,7 +577,7 @@ squad:
 
 #### 2. offer-architect — Offer Architect
 
-**Icon:** `package` | **Base Agent:** `marketing-strategist`
+**Icon:** `package` | **Base Agent:** `sales-strategist`
 
 **Role:** Constructs the irresistible offer — value stack, price anchoring, bonus strategy, guarantee design, and risk reversal. The offer is the foundation; copy and design amplify it.
 
@@ -575,7 +587,7 @@ squad:
 
 #### 3. sales-copywriter — Sales Copywriter
 
-**Icon:** `pen-tool` | **Base Agent:** `marketing-strategist`
+**Icon:** `pen-tool` | **Base Agent:** `sales-strategist`
 
 **Role:** Crafts long-form sales copy using proven persuasion frameworks. Writes the lead, story, body, transition, offer presentation, and close — calibrated for audience temperature and product type.
 
@@ -585,7 +597,7 @@ squad:
 
 #### 4. objection-handler — Objection Handler Specialist
 
-**Icon:** `shield` | **Base Agent:** `marketing-strategist`
+**Icon:** `shield` | **Base Agent:** `sales-strategist`
 
 **Role:** Maps every objection the prospect will have and designs preemptive content blocks, strategic FAQ, and risk reversal messaging that neutralizes resistance before it crystallizes.
 
@@ -595,7 +607,7 @@ squad:
 
 #### 5. sales-ux-designer — Sales Page UX/UI Designer
 
-**Icon:** `monitor` | **Base Agent:** `marketing-strategist`
+**Icon:** `smartphone` | **Base Agent:** `sales-strategist`
 
 **Role:** Defines visual direction for long-form sales pages — reading rhythm, visual breaks, pricing table design, CTA placement cadence, sticky elements, and mobile scroll optimization.
 
@@ -605,7 +617,7 @@ squad:
 
 #### 6. vsl-strategist — VSL Strategist
 
-**Icon:** `video` | **Base Agent:** `marketing-strategist`
+**Icon:** `video` | **Base Agent:** `sales-strategist`
 
 **Role:** Designs Video Sales Letter strategy — script structure, hook types, pacing, video-page integration, and viewer retention tactics. Covers both standalone VSL pages and hybrid (video + long-form) formats.
 
@@ -615,7 +627,7 @@ squad:
 
 #### 7. urgency-strategist — Urgency & Scarcity Strategist
 
-**Icon:** `clock` | **Base Agent:** `marketing-strategist`
+**Icon:** `clock` | **Base Agent:** `sales-strategist`
 
 **Role:** Designs ethical urgency and scarcity strategies — real deadlines, genuine limited availability, countdown mechanics, enrollment windows, and psychological triggers that accelerate decisions without manipulation.
 
@@ -625,7 +637,7 @@ squad:
 
 #### 8. launch-strategist — Launch Strategist
 
-**Icon:** `rocket` | **Base Agent:** `marketing-strategist`
+**Icon:** `rocket` | **Base Agent:** `sales-strategist`
 
 **Role:** Designs launch page sequences — pre-launch content (PLC), cart open/close pages, waitlist pages, webinar registration pages, and the full launch timeline with page dependencies.
 
