@@ -1,0 +1,92 @@
+squad:
+  code: csharp-squad
+  name: C# Squad
+  description: Full-stack C# and .NET development — ASP.NET Core, Blazor, Entity Framework, Azure, and modern .NET architecture
+  icon: hash
+  version: "1.0.0"
+  category: development
+  tags:
+    - csharp
+    - dotnet
+    - aspnet
+    - blazor
+    - entity-framework
+    - azure
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "C# and .NET developers"
+  platform: "Report"
+  format: "csharp-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: csharp-chief
+      name: C# Chief
+      icon: hash
+      prompt: agents/csharp-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: aspnet-specialist
+      name: ASP.NET Specialist
+      icon: globe
+      prompt: agents/aspnet-specialist.agent.md
+    - id: blazor-specialist
+      name: Blazor Specialist
+      icon: zap
+      prompt: agents/blazor-specialist.agent.md
+    - id: database-engineer
+      name: Database Engineer
+      icon: database
+      prompt: agents/database-engineer.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+    - id: cloud-architect
+      name: Cloud Architect
+      icon: cpu
+      prompt: agents/cloud-architect.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: csharp-chief
+        label: Diagnose .NET challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: csharp-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: csharp-chief
+        execution: inline
+      - id: step-03
+        agent: csharp-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: csharp-chief
+        execution: inline
+      - id: step-04
+        agent: csharp-chief
+        label: Implement and review code against .NET best practices
+        deliverFrom: csharp-chief
+        execution: inline
+      - id: step-05
+        agent: csharp-chief
+        label: Final review and C# Development Report delivery
+        deliverFrom: csharp-chief
+        execution: inline
