@@ -1,0 +1,99 @@
+squad:
+  code: cybersecurity
+  name: Cybersecurity
+  description: Offensive and defensive security operations — pentesting, AppSec, incident response, and threat intelligence
+  icon: shield
+  version: "1.0.0"
+  category: operations
+  tags:
+    - security
+    - pentesting
+    - appsec
+    - incident-response
+    - threat-intel
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Security teams, CTOs, and developers"
+  platform: "Report"
+  format: "security-report"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: cyber-chief
+      name: Cyber Chief
+      icon: shield
+      prompt: agents/cyber-chief.agent.md
+    - id: pentest-specialist
+      name: Pentest Specialist
+      icon: sword
+      prompt: agents/pentest-specialist.agent.md
+    - id: appsec-engineer
+      name: AppSec Engineer
+      icon: code
+      prompt: agents/appsec-engineer.agent.md
+    - id: network-defender
+      name: Network Defender
+      icon: network
+      prompt: agents/network-defender.agent.md
+    - id: vulnerability-analyst
+      name: Vulnerability Analyst
+      icon: bug
+      prompt: agents/vulnerability-analyst.agent.md
+    - id: threat-intel-analyst
+      name: Threat Intel Analyst
+      icon: radar
+      prompt: agents/threat-intel-analyst.agent.md
+    - id: incident-responder
+      name: Incident Responder
+      icon: alert
+      prompt: agents/incident-responder.agent.md
+    - id: recon-specialist
+      name: Recon Specialist
+      icon: search
+      prompt: agents/recon-specialist.agent.md
+    - id: mobile-security-analyst
+      name: Mobile Security Analyst
+      icon: smartphone
+      prompt: agents/mobile-security-analyst.agent.md
+    - id: security-advisor
+      name: Security Advisor
+      icon: shield-check
+      prompt: agents/security-advisor.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: cyber-chief
+        label: Diagnose security challenge and classify threat domain
+        execution: inline
+      - id: step-02
+        agent: cyber-chief
+        label: Route to specialist agents for domain-specific assessment
+        deliverFrom: cyber-chief
+        execution: inline
+      - id: step-03
+        agent: cyber-chief
+        label: Execute security analysis and collect findings
+        deliverFrom: cyber-chief
+        execution: inline
+      - id: step-04
+        agent: cyber-chief
+        label: Synthesize findings into Security Assessment Report
+        deliverFrom: cyber-chief
+        execution: inline
+      - id: step-05
+        agent: cyber-chief
+        label: Remediation review and prioritized action plan delivery
+        deliverFrom: cyber-chief
+        execution: inline
