@@ -1,0 +1,88 @@
+squad:
+  code: data-squad
+  name: Data Squad
+  description: Data-driven strategists covering analytics, CLV, growth, community, customer success, and audience building
+  icon: chart-bar
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - analytics
+    - growth
+    - clv
+    - retention
+    - community
+    - data
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Growth teams, product managers, and data-driven founders"
+  platform: "Report"
+  format: "data-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: data-chief
+      name: Data Chief
+      icon: chart-bar
+      prompt: agents/data-chief.agent.md
+    - id: analytics-strategist
+      name: Analytics Strategist
+      icon: bar-chart
+      prompt: agents/analytics-strategist.agent.md
+    - id: clv-modeler
+      name: CLV Modeler
+      icon: calculator
+      prompt: agents/clv-modeler.agent.md
+    - id: growth-hacker
+      name: Growth Hacker
+      icon: trending-up
+      prompt: agents/growth-hacker.agent.md
+    - id: audience-builder
+      name: Audience Builder
+      icon: users
+      prompt: agents/audience-builder.agent.md
+    - id: retention-specialist
+      name: Retention Specialist
+      icon: refresh-cw
+      prompt: agents/retention-specialist.agent.md
+    - id: community-strategist
+      name: Community Strategist
+      icon: heart
+      prompt: agents/community-strategist.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: data-chief
+        label: Diagnose data challenge and classify domain
+        execution: inline
+      - id: step-02
+        agent: data-chief
+        label: Instrument — route to specialist agents for domain analysis
+        deliverFrom: data-chief
+        execution: inline
+      - id: step-03
+        agent: data-chief
+        label: Analyze — synthesize specialist findings into data narrative
+        deliverFrom: data-chief
+        execution: inline
+      - id: step-04
+        agent: data-chief
+        label: Recommend — produce prioritized data strategy with experiments
+        deliverFrom: data-chief
+        execution: inline
+      - id: step-05
+        agent: data-chief
+        label: Measure Impact — define success metrics and review cadence
+        deliverFrom: data-chief
+        execution: inline
