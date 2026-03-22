@@ -1,0 +1,87 @@
+squad:
+  code: movement
+  name: Movement
+  description: Build movements that transcend brands — phenomenology, identity formation, manifestos, and impact measurement
+  icon: megaphone
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - movement
+    - identity
+    - manifesto
+    - phenomenology
+    - social-impact
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Founders, activists, and brand leaders building movements"
+  platform: "Report"
+  format: "movement-blueprint"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: movement-chief
+      name: Movement Chief
+      icon: megaphone
+      prompt: agents/movement-chief.agent.md
+    - id: movement-architect
+      name: Movement Architect
+      icon: layers
+      prompt: agents/movement-architect.agent.md
+    - id: phenomenon-analyst
+      name: Phenomenon Analyst
+      icon: eye
+      prompt: agents/phenomenon-analyst.agent.md
+    - id: identity-builder
+      name: Identity Builder
+      icon: users
+      prompt: agents/identity-builder.agent.md
+    - id: cycle-strategist
+      name: Cycle Strategist
+      icon: refresh-cw
+      prompt: agents/cycle-strategist.agent.md
+    - id: manifesto-writer
+      name: Manifesto Writer
+      icon: file-text
+      prompt: agents/manifesto-writer.agent.md
+    - id: impact-analyst
+      name: Impact Analyst
+      icon: bar-chart
+      prompt: agents/impact-analyst.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: movement-chief
+        label: Diagnose movement challenge and map the terrain
+        execution: inline
+      - id: step-02
+        agent: movement-chief
+        label: Analyze the underlying phenomenon and lived experience
+        deliverFrom: movement-chief
+        execution: inline
+      - id: step-03
+        agent: movement-chief
+        label: Design movement structure, identity, and belonging mechanics
+        deliverFrom: movement-chief
+        execution: inline
+      - id: step-04
+        agent: movement-chief
+        label: Craft the manifesto and declaration of purpose
+        deliverFrom: movement-chief
+        execution: inline
+      - id: step-05
+        agent: movement-chief
+        label: Define impact measurement framework and deliver Movement Blueprint
+        deliverFrom: movement-chief
+        execution: inline
