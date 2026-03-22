@@ -1,0 +1,106 @@
+squad:
+  code: traffic-masters
+  name: Traffic Masters
+  description: Paid traffic mastery across Meta, Google, and YouTube — strategy, creative, media buying, and scaling
+  icon: trending-up
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - traffic
+    - ads
+    - facebook
+    - google
+    - youtube
+    - media-buying
+    - paid-ads
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Media buyers, growth marketers, and performance teams"
+  platform: "Report"
+  format: "traffic-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: traffic-chief
+      name: Traffic Chief
+      icon: trending-up
+      prompt: agents/traffic-chief.agent.md
+    - id: meta-ads-specialist
+      name: Meta Ads Specialist
+      icon: facebook
+      prompt: agents/meta-ads-specialist.agent.md
+    - id: meta-scaling-specialist
+      name: Meta Scaling Specialist
+      icon: bar-chart
+      prompt: agents/meta-scaling-specialist.agent.md
+    - id: youtube-ads-specialist
+      name: YouTube Ads Specialist
+      icon: play-circle
+      prompt: agents/youtube-ads-specialist.agent.md
+    - id: google-ads-specialist
+      name: Google Ads Specialist
+      icon: search
+      prompt: agents/google-ads-specialist.agent.md
+    - id: ad-creative-strategist
+      name: Ad Creative Strategist
+      icon: image
+      prompt: agents/ad-creative-strategist.agent.md
+    - id: media-buyer
+      name: Media Buyer
+      icon: shopping-cart
+      prompt: agents/media-buyer.agent.md
+    - id: performance-analyst
+      name: Performance Analyst
+      icon: activity
+      prompt: agents/performance-analyst.agent.md
+    - id: tracking-specialist
+      name: Tracking Specialist
+      icon: crosshair
+      prompt: agents/tracking-specialist.agent.md
+    - id: budget-manager
+      name: Budget Manager
+      icon: dollar-sign
+      prompt: agents/budget-manager.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: traffic-chief
+        label: Diagnose traffic challenge and classify by platform and objective
+        execution: inline
+      - id: step-02
+        agent: traffic-chief
+        label: Audit current campaigns, accounts, and performance baselines
+        deliverFrom: traffic-chief
+        execution: inline
+      - id: step-03
+        agent: traffic-chief
+        label: Route to specialist agents and build platform-specific strategy
+        deliverFrom: traffic-chief
+        execution: inline
+      - id: step-04
+        agent: traffic-chief
+        label: Launch plan — campaign structure, creatives, and targeting setup
+        deliverFrom: traffic-chief
+        execution: inline
+      - id: step-05
+        agent: traffic-chief
+        label: Optimize and scale — performance triggers, budget reallocation, and iteration
+        deliverFrom: traffic-chief
+        execution: inline
+      - id: step-06
+        agent: traffic-chief
+        label: Review and report — Traffic Strategy Report delivery and next-cycle planning
+        deliverFrom: traffic-chief
+        execution: inline
