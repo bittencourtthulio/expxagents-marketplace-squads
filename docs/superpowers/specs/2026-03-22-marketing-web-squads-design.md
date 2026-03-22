@@ -2,7 +2,7 @@
 
 **Date:** 2026-03-22
 **Author:** Claude + Thulio
-**Status:** Draft
+**Status:** Review
 
 ---
 
@@ -38,11 +38,24 @@ Each new squad includes its own copy, design, and strategy specialists — calib
 
 All squads produce strategic deliverables: structure, wireframe direction, copy, UX/UI direction, and specifications. They do not generate HTML, CSS, or framework code. Output is designed for handoff to development teams or direct use in no-code/design tools.
 
+### Agent ID overlap with existing squads
+
+The sales-page-squad defines `offer-architect` and `launch-strategist` — IDs that also exist in the hormozi-squad. This is intentional. Each squad is directory-scoped (`squads/{squad}/agents/{id}`), so there is no file collision. The agents serve different contexts: hormozi-squad's offer-architect operates in a business scaling context, while sales-page-squad's operates specifically for sales page offer construction. Squad-scoped naming is the correct pattern in this project.
+
+### Agent file structure
+
+All agent `.md` files must follow the full structure established by existing squads (e.g., `brand-chief.agent.md`, `positioning-specialist.agent.md`):
+
+- YAML frontmatter: `base_agent`, `id`, `name`, `icon`, `execution`, `skills`
+- Sections: `## Role`, `## Calibration`, `## Instructions`, `## Routing Matrix` (chiefs only), `## Expected Input`, `## Expected Output`, `## Quality Criteria`, `## Anti-Patterns`
+
+The `base_agent` for all agents in these 3 squads is `marketing-strategist`.
+
 ---
 
 ## Squad 1: institutional-web-squad
 
-### Metadata
+### Complete squad.yaml
 
 ```yaml
 squad:
@@ -59,14 +72,91 @@ squad:
     - portfolio
     - information-architecture
     - ux-design
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
   target_audience: "Founders, marketing teams, agencies, and solopreneurs building institutional or corporate websites"
   platform: "Report"
   format: "institutional-web-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: institutional-web-chief
+      name: Web Strategist Chief
+      icon: globe
+      prompt: agents/institutional-web-chief.agent.md
+    - id: information-architect
+      name: Information Architect
+      icon: sitemap
+      prompt: agents/information-architect.agent.md
+    - id: ux-strategist
+      name: UX Strategist
+      icon: users
+      prompt: agents/ux-strategist.agent.md
+    - id: ui-art-director
+      name: UI Art Director
+      icon: paintbrush
+      prompt: agents/ui-art-director.agent.md
+    - id: content-strategist
+      name: Content Strategist
+      icon: file-text
+      prompt: agents/content-strategist.agent.md
+    - id: seo-specialist
+      name: SEO Specialist
+      icon: search
+      prompt: agents/seo-specialist.agent.md
+    - id: brand-alignment-specialist
+      name: Brand Alignment Specialist
+      icon: check-circle
+      prompt: agents/brand-alignment-specialist.agent.md
+    - id: web-analytics-planner
+      name: Web Analytics Planner
+      icon: bar-chart
+      prompt: agents/web-analytics-planner.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: institutional-web-chief
+        label: Receive briefing, diagnose site type and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: institutional-web-chief
+        label: Route to Information Architect and UX Strategist for structure and user flows
+        deliverFrom: institutional-web-chief
+        execution: inline
+      - id: step-03
+        agent: institutional-web-chief
+        label: Route to UI Art Director and Brand Alignment for visual direction
+        deliverFrom: institutional-web-chief
+        execution: inline
+      - id: step-04
+        agent: institutional-web-chief
+        label: Route to Content Strategist and SEO Specialist for content and discoverability
+        deliverFrom: institutional-web-chief
+        execution: inline
+      - id: step-05
+        agent: institutional-web-chief
+        label: Synthesize Web Strategy Report with Analytics Plan and implementation roadmap
+        deliverFrom: institutional-web-chief
+        execution: inline
 ```
 
 ### Agents (8)
 
 #### 1. institutional-web-chief — Web Strategist Chief
+
+**Icon:** `globe` | **Base Agent:** `marketing-strategist`
 
 **Role:** Receives the website briefing, diagnoses site type (corporate, institutional, portfolio, multi-page), identifies target audience and business objectives, routes to the right specialists, and synthesizes a comprehensive Web Strategy Report.
 
@@ -87,6 +177,8 @@ squad:
 
 #### 2. information-architect — Information Architect
 
+**Icon:** `sitemap` | **Base Agent:** `marketing-strategist`
+
 **Role:** Designs site structure, navigation hierarchy, sitemap, content taxonomy, and page-level content blocks. Applies information architecture principles to ensure users find what they need in 3 clicks or fewer.
 
 **Key Frameworks:** Card sorting methodology, tree testing principles, content inventory, navigation patterns (global, local, contextual, utility).
@@ -94,6 +186,8 @@ squad:
 **Expected Output:** Information Architecture Analysis with sitemap, navigation structure, content taxonomy, page hierarchy, and internal linking strategy.
 
 #### 3. ux-strategist — UX Strategist
+
+**Icon:** `users` | **Base Agent:** `marketing-strategist`
 
 **Role:** Designs user flows, conceptual wireframes, usability guidelines, and accessibility requirements. Focuses on how users move through the site and complete key tasks.
 
@@ -103,6 +197,8 @@ squad:
 
 #### 4. ui-art-director — UI Art Director
 
+**Icon:** `paintbrush` | **Base Agent:** `marketing-strategist`
+
 **Role:** Defines visual direction including design system foundations, color palette strategy, typography hierarchy, grid systems, spacing, and moodboard direction. Does not produce final designs but provides clear creative direction for designers.
 
 **Key Frameworks:** Design system thinking, visual hierarchy principles, Gestalt principles, typography scales, color theory for web.
@@ -110,6 +206,8 @@ squad:
 **Expected Output:** Visual Direction Brief with design principles, color palette rationale, typography system, grid/spacing guidelines, component style direction, and moodboard references.
 
 #### 5. content-strategist — Content Strategist
+
+**Icon:** `file-text` | **Base Agent:** `marketing-strategist`
 
 **Role:** Defines content strategy per page — what content each page needs, content hierarchy, tone of voice per section, microcopy guidelines, and content governance rules.
 
@@ -119,6 +217,8 @@ squad:
 
 #### 6. seo-specialist — SEO Specialist
 
+**Icon:** `search` | **Base Agent:** `marketing-strategist`
+
 **Role:** Defines on-page SEO strategy including heading structure, meta tag strategy, URL structure, schema markup recommendations, internal linking strategy, and Core Web Vitals targets.
 
 **Key Frameworks:** Google E-E-A-T principles, technical SEO best practices, semantic HTML guidelines, structured data (Schema.org), keyword intent mapping.
@@ -126,6 +226,8 @@ squad:
 **Expected Output:** SEO Strategy Document with keyword mapping per page, heading structure, meta tag templates, URL architecture, schema markup plan, and performance targets.
 
 #### 7. brand-alignment-specialist — Brand Alignment Specialist
+
+**Icon:** `check-circle` | **Base Agent:** `marketing-strategist`
 
 **Role:** Ensures the website aligns with existing brand identity, brandbook guidelines, and visual standards. Reviews all design and content decisions through the lens of brand consistency.
 
@@ -135,48 +237,19 @@ squad:
 
 #### 8. web-analytics-planner — Web Analytics Planner
 
+**Icon:** `bar-chart` | **Base Agent:** `marketing-strategist`
+
 **Role:** Designs the measurement strategy — what to track, which KPIs matter, event tagging plan, dashboard structure, and success criteria for the site launch.
 
 **Key Frameworks:** Google Analytics 4 event model, UTM strategy, conversion funnel mapping, KPI hierarchies, data layer design.
 
 **Expected Output:** Analytics Plan with KPI definitions, event taxonomy, tagging requirements, dashboard wireframes, and reporting cadence recommendations.
 
-### Pipeline
-
-```yaml
-pipeline:
-  steps:
-    - id: step-01
-      agent: institutional-web-chief
-      label: Receive briefing, diagnose site type and identify relevant specialists
-      execution: inline
-    - id: step-02
-      agent: institutional-web-chief
-      label: Route to Information Architect and UX Strategist for structure and user flows
-      deliverFrom: institutional-web-chief
-      execution: inline
-    - id: step-03
-      agent: institutional-web-chief
-      label: Route to UI Art Director and Brand Alignment for visual direction
-      deliverFrom: institutional-web-chief
-      execution: inline
-    - id: step-04
-      agent: institutional-web-chief
-      label: Route to Content Strategist and SEO Specialist for content and discoverability
-      deliverFrom: institutional-web-chief
-      execution: inline
-    - id: step-05
-      agent: institutional-web-chief
-      label: Synthesize Web Strategy Report with Analytics Plan and implementation roadmap
-      deliverFrom: institutional-web-chief
-      execution: inline
-```
-
 ---
 
 ## Squad 2: landing-page-squad
 
-### Metadata
+### Complete squad.yaml
 
 ```yaml
 squad:
@@ -193,14 +266,91 @@ squad:
     - squeeze-page
     - opt-in
     - cro
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
   target_audience: "Marketers, agencies, growth teams, and solopreneurs building conversion-focused landing pages"
   platform: "Report"
   format: "landing-page-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: landing-page-chief
+      name: Conversion Strategist Chief
+      icon: target
+      prompt: agents/landing-page-chief.agent.md
+    - id: conversion-architect
+      name: Conversion Architect
+      icon: layout
+      prompt: agents/conversion-architect.agent.md
+    - id: persuasion-copywriter
+      name: Persuasion Copywriter
+      icon: edit
+      prompt: agents/persuasion-copywriter.agent.md
+    - id: cro-specialist
+      name: CRO Specialist
+      icon: trending-up
+      prompt: agents/cro-specialist.agent.md
+    - id: landing-ux-designer
+      name: Landing Page UX/UI Designer
+      icon: monitor
+      prompt: agents/landing-ux-designer.agent.md
+    - id: social-proof-strategist
+      name: Social Proof Strategist
+      icon: star
+      prompt: agents/social-proof-strategist.agent.md
+    - id: lead-magnet-architect
+      name: Lead Magnet Architect
+      icon: gift
+      prompt: agents/lead-magnet-architect.agent.md
+    - id: ab-testing-planner
+      name: A/B Testing Planner
+      icon: git-branch
+      prompt: agents/ab-testing-planner.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: landing-page-chief
+        label: Receive briefing, diagnose conversion objective and audience awareness level
+        execution: inline
+      - id: step-02
+        agent: landing-page-chief
+        label: Route to Conversion Architect and Lead Magnet Architect for structure and offer
+        deliverFrom: landing-page-chief
+        execution: inline
+      - id: step-03
+        agent: landing-page-chief
+        label: Route to Persuasion Copywriter and Social Proof Strategist for copy and trust
+        deliverFrom: landing-page-chief
+        execution: inline
+      - id: step-04
+        agent: landing-page-chief
+        label: Route to Landing UX/UI Designer for visual conversion direction
+        deliverFrom: landing-page-chief
+        execution: inline
+      - id: step-05
+        agent: landing-page-chief
+        label: Synthesize Landing Page Strategy Report with CRO analysis and testing roadmap
+        deliverFrom: landing-page-chief
+        execution: inline
 ```
 
 ### Agents (8)
 
 #### 1. landing-page-chief — Conversion Strategist Chief
+
+**Icon:** `target` | **Base Agent:** `marketing-strategist`
 
 **Role:** Receives the landing page briefing, diagnoses conversion objective (lead capture, webinar registration, download, free trial, etc.), identifies the target audience and funnel stage, routes to specialists, and delivers a Landing Page Strategy Report.
 
@@ -221,6 +371,8 @@ squad:
 
 #### 2. conversion-architect — Conversion Architect
 
+**Icon:** `layout` | **Base Agent:** `marketing-strategist`
+
 **Role:** Designs the page structure — block sequence, content hierarchy, above-the-fold strategy, scroll flow, and section-by-section blueprint. Every structural decision optimizes for the single conversion goal.
 
 **Key Frameworks:** Inverted pyramid for web, F-pattern and Z-pattern reading, above-the-fold hierarchy, progressive disclosure, friction reduction.
@@ -228,6 +380,8 @@ squad:
 **Expected Output:** Page Architecture Blueprint with block-by-block structure, content hierarchy per section, above-the-fold specification, scroll flow rationale, and mobile adaptation notes.
 
 #### 3. persuasion-copywriter — Persuasion Copywriter
+
+**Icon:** `edit` | **Base Agent:** `marketing-strategist`
 
 **Role:** Crafts headlines, subheadlines, bullet points, CTAs, and microcopy. Every word is calibrated for the specific conversion goal and audience awareness level.
 
@@ -237,6 +391,8 @@ squad:
 
 #### 4. cro-specialist — CRO Specialist
 
+**Icon:** `trending-up` | **Base Agent:** `marketing-strategist`
+
 **Role:** Analyzes the page design through conversion rate optimization lenses — identifying friction points, cognitive load issues, decision fatigue risks, and optimization opportunities.
 
 **Key Frameworks:** Cialdini's persuasion principles, Fogg Behavior Model (B=MAT), LIFT model (value proposition, relevance, clarity, urgency, anxiety, distraction), heuristic evaluation for conversion.
@@ -244,6 +400,8 @@ squad:
 **Expected Output:** CRO Analysis with friction audit, heuristic evaluation scores, optimization recommendations (prioritized by impact/effort), and conversion rate benchmarks for the page type.
 
 #### 5. landing-ux-designer — Landing Page UX/UI Designer
+
+**Icon:** `monitor` | **Base Agent:** `marketing-strategist`
 
 **Role:** Defines visual layout direction for high-conversion pages — form design, CTA placement and styling, visual hierarchy, whitespace strategy, contrast ratios, and responsive behavior.
 
@@ -253,6 +411,8 @@ squad:
 
 #### 6. social-proof-strategist — Social Proof Strategist
 
+**Icon:** `star` | **Base Agent:** `marketing-strategist`
+
 **Role:** Designs the social proof strategy — what types of proof to use, where to place them, how to format them, and how to maximize their persuasive impact.
 
 **Key Frameworks:** Types of social proof (expert, celebrity, user, wisdom of crowds, certification), trust signal hierarchy, testimonial structure (before/after, specific results), logo wall strategy.
@@ -260,6 +420,8 @@ squad:
 **Expected Output:** Social Proof Strategy with proof type recommendations, placement map, testimonial templates, trust signal checklist, and proof collection guidelines.
 
 #### 7. lead-magnet-architect — Lead Magnet Architect
+
+**Icon:** `gift` | **Base Agent:** `marketing-strategist`
 
 **Role:** Designs the lead magnet or capture offer — what to offer, how to frame the value proposition, the hook that drives opt-in, and alignment with the broader funnel.
 
@@ -269,48 +431,19 @@ squad:
 
 #### 8. ab-testing-planner — A/B Testing Planner
 
+**Icon:** `git-branch` | **Base Agent:** `marketing-strategist`
+
 **Role:** Designs the testing roadmap — what to test first, hypothesis formulation, variant design, sample size requirements, and metrics hierarchy (primary, secondary, guardrail).
 
 **Key Frameworks:** ICE scoring (Impact, Confidence, Ease), hypothesis-driven testing, statistical significance basics, test prioritization frameworks, multivariate vs. A/B decision criteria.
 
 **Expected Output:** Testing Roadmap with prioritized test backlog (ICE-scored), hypothesis templates per test, variant descriptions, sample size guidance, and metrics hierarchy.
 
-### Pipeline
-
-```yaml
-pipeline:
-  steps:
-    - id: step-01
-      agent: landing-page-chief
-      label: Receive briefing, diagnose conversion objective and audience awareness level
-      execution: inline
-    - id: step-02
-      agent: landing-page-chief
-      label: Route to Conversion Architect and Lead Magnet Architect for structure and offer
-      deliverFrom: landing-page-chief
-      execution: inline
-    - id: step-03
-      agent: landing-page-chief
-      label: Route to Persuasion Copywriter and Social Proof Strategist for copy and trust
-      deliverFrom: landing-page-chief
-      execution: inline
-    - id: step-04
-      agent: landing-page-chief
-      label: Route to Landing UX/UI Designer for visual conversion direction
-      deliverFrom: landing-page-chief
-      execution: inline
-    - id: step-05
-      agent: landing-page-chief
-      label: Synthesize Landing Page Strategy Report with CRO analysis and testing roadmap
-      deliverFrom: landing-page-chief
-      execution: inline
-```
-
 ---
 
 ## Squad 3: sales-page-squad
 
-### Metadata
+### Complete squad.yaml
 
 ```yaml
 squad:
@@ -327,14 +460,91 @@ squad:
     - long-form
     - persuasion
     - offer
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
   target_audience: "Entrepreneurs, course creators, agencies, and marketing teams building high-ticket or direct-response sales pages"
   platform: "Report"
   format: "sales-page-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: sales-page-chief
+      name: Sales Page Architect Chief
+      icon: dollar-sign
+      prompt: agents/sales-page-chief.agent.md
+    - id: offer-architect
+      name: Offer Architect
+      icon: package
+      prompt: agents/offer-architect.agent.md
+    - id: sales-copywriter
+      name: Sales Copywriter
+      icon: pen-tool
+      prompt: agents/sales-copywriter.agent.md
+    - id: objection-handler
+      name: Objection Handler Specialist
+      icon: shield
+      prompt: agents/objection-handler.agent.md
+    - id: sales-ux-designer
+      name: Sales Page UX/UI Designer
+      icon: monitor
+      prompt: agents/sales-ux-designer.agent.md
+    - id: vsl-strategist
+      name: VSL Strategist
+      icon: video
+      prompt: agents/vsl-strategist.agent.md
+    - id: urgency-strategist
+      name: Urgency & Scarcity Strategist
+      icon: clock
+      prompt: agents/urgency-strategist.agent.md
+    - id: launch-strategist
+      name: Launch Strategist
+      icon: rocket
+      prompt: agents/launch-strategist.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: sales-page-chief
+        label: Receive briefing, diagnose sale type and audience temperature
+        execution: inline
+      - id: step-02
+        agent: sales-page-chief
+        label: Route to Offer Architect and Launch Strategist for offer construction and strategy
+        deliverFrom: sales-page-chief
+        execution: inline
+      - id: step-03
+        agent: sales-page-chief
+        label: Route to Sales Copywriter and Objection Handler for persuasion copy and resistance handling
+        deliverFrom: sales-page-chief
+        execution: inline
+      - id: step-04
+        agent: sales-page-chief
+        label: Route to VSL Strategist for video sales letter direction (when applicable)
+        deliverFrom: sales-page-chief
+        execution: inline
+      - id: step-05
+        agent: sales-page-chief
+        label: Synthesize Sales Page Strategy Report with visual direction and urgency strategy
+        deliverFrom: sales-page-chief
+        execution: inline
 ```
 
 ### Agents (8)
 
 #### 1. sales-page-chief — Sales Page Architect Chief
+
+**Icon:** `dollar-sign` | **Base Agent:** `marketing-strategist`
 
 **Role:** Receives the sales page briefing, diagnoses sale type (evergreen, launch, high-ticket, low-ticket, webinar replay, etc.), identifies the audience temperature (cold, warm, hot), routes to specialists, and delivers a Sales Page Strategy Report.
 
@@ -355,6 +565,8 @@ squad:
 
 #### 2. offer-architect — Offer Architect
 
+**Icon:** `package` | **Base Agent:** `marketing-strategist`
+
 **Role:** Constructs the irresistible offer — value stack, price anchoring, bonus strategy, guarantee design, and risk reversal. The offer is the foundation; copy and design amplify it.
 
 **Key Frameworks:** Alex Hormozi's Value Equation (Dream Outcome x Perceived Likelihood / Time Delay x Effort & Sacrifice), value stacking, price anchoring psychology, guarantee spectrum (conditional to unconditional), bonus design principles.
@@ -362,6 +574,8 @@ squad:
 **Expected Output:** Offer Architecture Document with value stack breakdown, price anchoring strategy, bonus recommendations, guarantee design, and risk reversal framework.
 
 #### 3. sales-copywriter — Sales Copywriter
+
+**Icon:** `pen-tool` | **Base Agent:** `marketing-strategist`
 
 **Role:** Crafts long-form sales copy using proven persuasion frameworks. Writes the lead, story, body, transition, offer presentation, and close — calibrated for audience temperature and product type.
 
@@ -371,6 +585,8 @@ squad:
 
 #### 4. objection-handler — Objection Handler Specialist
 
+**Icon:** `shield` | **Base Agent:** `marketing-strategist`
+
 **Role:** Maps every objection the prospect will have and designs preemptive content blocks, strategic FAQ, and risk reversal messaging that neutralizes resistance before it crystallizes.
 
 **Key Frameworks:** Objection categorization (price, timing, trust, need, authority), preemptive objection handling (address before they think it), FAQ as sales tool, fear-to-confidence arc.
@@ -378,6 +594,8 @@ squad:
 **Expected Output:** Objection Handling Strategy with objection map (categorized and prioritized), preemptive content block recommendations, strategic FAQ (positioned as sales copy, not support), and risk reversal messaging.
 
 #### 5. sales-ux-designer — Sales Page UX/UI Designer
+
+**Icon:** `monitor` | **Base Agent:** `marketing-strategist`
 
 **Role:** Defines visual direction for long-form sales pages — reading rhythm, visual breaks, pricing table design, CTA placement cadence, sticky elements, and mobile scroll optimization.
 
@@ -387,6 +605,8 @@ squad:
 
 #### 6. vsl-strategist — VSL Strategist
 
+**Icon:** `video` | **Base Agent:** `marketing-strategist`
+
 **Role:** Designs Video Sales Letter strategy — script structure, hook types, pacing, video-page integration, and viewer retention tactics. Covers both standalone VSL pages and hybrid (video + long-form) formats.
 
 **Key Frameworks:** VSL script structure (hook, story, content, pitch, close), hook typology (curiosity, contrarian, story, statistic), pacing and retention curves, video-page integration patterns, autoplay vs. click-to-play strategy.
@@ -394,6 +614,8 @@ squad:
 **Expected Output:** VSL Strategy Document with script outline, hook options (3 variants), pacing guide, video-page integration spec, and retention optimization tactics.
 
 #### 7. urgency-strategist — Urgency & Scarcity Strategist
+
+**Icon:** `clock` | **Base Agent:** `marketing-strategist`
 
 **Role:** Designs ethical urgency and scarcity strategies — real deadlines, genuine limited availability, countdown mechanics, enrollment windows, and psychological triggers that accelerate decisions without manipulation.
 
@@ -403,42 +625,13 @@ squad:
 
 #### 8. launch-strategist — Launch Strategist
 
+**Icon:** `rocket` | **Base Agent:** `marketing-strategist`
+
 **Role:** Designs launch page sequences — pre-launch content (PLC), cart open/close pages, waitlist pages, webinar registration pages, and the full launch timeline with page dependencies.
 
 **Key Frameworks:** Jeff Walker's Product Launch Formula (PLF), seed launch, internal launch, JV launch, evergreen launch funnels, launch page sequence mapping, pre-launch content strategy.
 
 **Expected Output:** Launch Strategy Document with launch type recommendation, page sequence map, timeline, pre-launch content outlines, cart open/close page specifications, and post-launch follow-up page strategy.
-
-### Pipeline
-
-```yaml
-pipeline:
-  steps:
-    - id: step-01
-      agent: sales-page-chief
-      label: Receive briefing, diagnose sale type and audience temperature
-      execution: inline
-    - id: step-02
-      agent: sales-page-chief
-      label: Route to Offer Architect and Launch Strategist for offer construction and strategy
-      deliverFrom: sales-page-chief
-      execution: inline
-    - id: step-03
-      agent: sales-page-chief
-      label: Route to Sales Copywriter and Objection Handler for persuasion copy and resistance handling
-      deliverFrom: sales-page-chief
-      execution: inline
-    - id: step-04
-      agent: sales-page-chief
-      label: Route to VSL Strategist for video sales letter direction (when applicable)
-      deliverFrom: sales-page-chief
-      execution: inline
-    - id: step-05
-      agent: sales-page-chief
-      label: Synthesize Sales Page Strategy Report with visual direction and urgency strategy
-      deliverFrom: sales-page-chief
-      execution: inline
-```
 
 ---
 
@@ -446,7 +639,7 @@ pipeline:
 
 | Squad | Code | Agents | Category | Focus |
 |-------|------|--------|----------|-------|
-| Institutional Web Squad | institutional-web-squad | 8 | marketing | Sites, corporativos, portfolios, multi-page |
+| Institutional Web Squad | institutional-web-squad | 8 | marketing | Sites, corporate, portfolios, multi-page |
 | Landing Page Squad | landing-page-squad | 8 | marketing | Landing pages, capture, opt-in, squeeze pages |
 | Sales Page Squad | sales-page-squad | 8 | marketing | Sales pages, VSL, launch, long-form |
 
@@ -454,13 +647,11 @@ pipeline:
 
 ### Shared Characteristics
 
-- **Category:** marketing
-- **Skills:** web_search, web_fetch
-- **Platform:** Report
-- **Schedule:** enabled
+All three squads share:
 - **Language:** Bilingual — agents respond in the user's language
 - **No code generation** — all output is strategic, structural, and directional
 - **Independent** — each squad is self-sufficient, no dependency on other squads
+- **Global memory:** All squads reference `_expxagents/_memory/company.md` and `_expxagents/_memory/preferences.md`
 
 ### File Structure Per Squad
 
