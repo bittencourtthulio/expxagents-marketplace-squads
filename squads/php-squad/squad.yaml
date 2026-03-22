@@ -1,0 +1,92 @@
+squad:
+  code: php-squad
+  name: PHP Squad
+  description: Full-stack PHP development — Laravel, Symfony, WordPress, modern PHP 8.x, and testing
+  icon: code
+  version: "1.0.0"
+  category: development
+  tags:
+    - php
+    - laravel
+    - symfony
+    - wordpress
+    - composer
+    - php8
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "PHP developers and web developers"
+  platform: "Report"
+  format: "php-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: php-chief
+      name: PHP Chief
+      icon: code
+      prompt: agents/php-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: laravel-specialist
+      name: Laravel Specialist
+      icon: globe
+      prompt: agents/laravel-specialist.agent.md
+    - id: symfony-specialist
+      name: Symfony Specialist
+      icon: zap
+      prompt: agents/symfony-specialist.agent.md
+    - id: wordpress-specialist
+      name: WordPress Specialist
+      icon: layout
+      prompt: agents/wordpress-specialist.agent.md
+    - id: database-engineer
+      name: Database Engineer
+      icon: database
+      prompt: agents/database-engineer.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: php-chief
+        label: Diagnose PHP challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: php-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: php-chief
+        execution: inline
+      - id: step-03
+        agent: php-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: php-chief
+        execution: inline
+      - id: step-04
+        agent: php-chief
+        label: Implement and review code against PHP best practices
+        deliverFrom: php-chief
+        execution: inline
+      - id: step-05
+        agent: php-chief
+        label: Final review and PHP Development Report delivery
+        deliverFrom: php-chief
+        execution: inline
