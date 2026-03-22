@@ -1,0 +1,88 @@
+squad:
+  code: go-squad
+  name: Go Squad
+  description: Go development — web services, concurrency, cloud-native, Kubernetes, and idiomatic Go
+  icon: terminal
+  version: "1.0.0"
+  category: development
+  tags:
+    - go
+    - golang
+    - gin
+    - grpc
+    - kubernetes
+    - cloud-native
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Go developers and cloud-native engineers"
+  platform: "Report"
+  format: "go-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: go-chief
+      name: Go Chief
+      icon: terminal
+      prompt: agents/go-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: web-specialist
+      name: Web Specialist
+      icon: globe
+      prompt: agents/web-specialist.agent.md
+    - id: concurrency-architect
+      name: Concurrency Architect
+      icon: cpu
+      prompt: agents/concurrency-architect.agent.md
+    - id: cloud-native-engineer
+      name: Cloud Native Engineer
+      icon: cloud
+      prompt: agents/cloud-native-engineer.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: go-chief
+        label: Diagnose Go challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: go-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: go-chief
+        execution: inline
+      - id: step-03
+        agent: go-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: go-chief
+        execution: inline
+      - id: step-04
+        agent: go-chief
+        label: Implement and review code against idiomatic Go best practices
+        deliverFrom: go-chief
+        execution: inline
+      - id: step-05
+        agent: go-chief
+        label: Final review and Go Development Report delivery
+        deliverFrom: go-chief
+        execution: inline
