@@ -1,0 +1,92 @@
+squad:
+  code: java-squad
+  name: Java Squad
+  description: Enterprise Java development — Spring Boot, DDD, Android, testing, and modern Java architecture
+  icon: coffee
+  version: "1.0.0"
+  category: development
+  tags:
+    - java
+    - spring-boot
+    - jpa
+    - android
+    - microservices
+    - enterprise
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Java developers and enterprise architects"
+  platform: "Report"
+  format: "java-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: java-chief
+      name: Java Chief
+      icon: coffee
+      prompt: agents/java-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: spring-specialist
+      name: Spring Specialist
+      icon: zap
+      prompt: agents/spring-specialist.agent.md
+    - id: enterprise-architect
+      name: Enterprise Architect
+      icon: layers
+      prompt: agents/enterprise-architect.agent.md
+    - id: database-engineer
+      name: Database Engineer
+      icon: database
+      prompt: agents/database-engineer.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+    - id: android-specialist
+      name: Android Specialist
+      icon: smartphone
+      prompt: agents/android-specialist.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: java-chief
+        label: Diagnose Java challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: java-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: java-chief
+        execution: inline
+      - id: step-03
+        agent: java-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: java-chief
+        execution: inline
+      - id: step-04
+        agent: java-chief
+        label: Implement and review code against Java best practices
+        deliverFrom: java-chief
+        execution: inline
+      - id: step-05
+        agent: java-chief
+        label: Final review and Java Development Report delivery
+        deliverFrom: java-chief
+        execution: inline
