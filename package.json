@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Community squads for the ExpxAgents marketplace",
   "private": true,
+  "type": "module",
   "scripts": {
     "validate": "node scripts/validate.js",
     "publish-all": "node scripts/publish-all.js"
