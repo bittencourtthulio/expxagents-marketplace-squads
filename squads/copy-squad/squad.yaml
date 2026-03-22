@@ -1,0 +1,108 @@
+squad:
+  code: copy-squad
+  name: Copy Squad
+  description: Elite copywriting covering direct response, email, funnels, VSLs, sales letters, offers, and brand copy — powered by frameworks from legendary copywriters
+  icon: pen-tool
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - copywriting
+    - direct-response
+    - email
+    - funnels
+    - sales-copy
+    - vsl
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Marketers, founders, and copywriters"
+  platform: "Report"
+  format: "copy-deliverable"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: copy-chief
+      name: Copy Chief
+      icon: pen-tool
+      prompt: agents/copy-chief.agent.md
+    - id: direct-response-writer
+      name: Direct Response Writer
+      icon: mail
+      prompt: agents/direct-response-writer.agent.md
+    - id: awareness-strategist
+      name: Awareness Strategist
+      icon: eye
+      prompt: agents/awareness-strategist.agent.md
+    - id: scientific-copywriter
+      name: Scientific Copywriter
+      icon: flask-conical
+      prompt: agents/scientific-copywriter.agent.md
+    - id: offer-copywriter
+      name: Offer Copywriter
+      icon: gift
+      prompt: agents/offer-copywriter.agent.md
+    - id: funnel-copywriter
+      name: Funnel Copywriter
+      icon: funnel
+      prompt: agents/funnel-copywriter.agent.md
+    - id: email-sequence-writer
+      name: Email Sequence Writer
+      icon: inbox
+      prompt: agents/email-sequence-writer.agent.md
+    - id: vsl-writer
+      name: VSL Writer
+      icon: video
+      prompt: agents/vsl-writer.agent.md
+    - id: headline-specialist
+      name: Headline Specialist
+      icon: type
+      prompt: agents/headline-specialist.agent.md
+    - id: brand-copywriter
+      name: Brand Copywriter
+      icon: badge
+      prompt: agents/brand-copywriter.agent.md
+    - id: sales-page-writer
+      name: Sales Page Writer
+      icon: file-text
+      prompt: agents/sales-page-writer.agent.md
+    - id: content-copywriter
+      name: Content Copywriter
+      icon: feather
+      prompt: agents/content-copywriter.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: copy-chief
+        label: Diagnose copy request and audience awareness level
+        execution: inline
+      - id: step-02
+        agent: copy-chief
+        label: Route to specialist copywriters and gather copy
+        deliverFrom: copy-chief
+        execution: inline
+      - id: step-03
+        agent: copy-chief
+        label: Draft consolidated copy and review for framework alignment
+        deliverFrom: copy-chief
+        execution: inline
+      - id: step-04
+        agent: copy-chief
+        label: Review and optimize for persuasion, clarity, and conversion
+        deliverFrom: copy-chief
+        execution: inline
+      - id: step-05
+        agent: copy-chief
+        label: Final review and copy delivery
+        deliverFrom: copy-chief
+        execution: inline
