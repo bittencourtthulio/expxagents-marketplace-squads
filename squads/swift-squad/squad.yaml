@@ -1,0 +1,88 @@
+squad:
+  code: swift-squad
+  name: Swift Squad
+  description: Swift development — SwiftUI, UIKit, Vapor server-side, and Apple platform best practices
+  icon: apple
+  version: "1.0.0"
+  category: development
+  tags:
+    - swift
+    - swiftui
+    - uikit
+    - vapor
+    - ios
+    - macos
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "iOS/macOS developers and Swift server-side engineers"
+  platform: "Report"
+  format: "swift-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: swift-chief
+      name: Swift Chief
+      icon: apple
+      prompt: agents/swift-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: swiftui-specialist
+      name: SwiftUI Specialist
+      icon: layout
+      prompt: agents/swiftui-specialist.agent.md
+    - id: uikit-specialist
+      name: UIKit Specialist
+      icon: smartphone
+      prompt: agents/uikit-specialist.agent.md
+    - id: vapor-specialist
+      name: Vapor Specialist
+      icon: cloud
+      prompt: agents/vapor-specialist.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: swift-chief
+        label: Diagnose Swift challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: swift-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: swift-chief
+        execution: inline
+      - id: step-03
+        agent: swift-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: swift-chief
+        execution: inline
+      - id: step-04
+        agent: swift-chief
+        label: Implement and review code against Swift best practices
+        deliverFrom: swift-chief
+        execution: inline
+      - id: step-05
+        agent: swift-chief
+        label: Final review and Swift Development Report delivery
+        deliverFrom: swift-chief
+        execution: inline
