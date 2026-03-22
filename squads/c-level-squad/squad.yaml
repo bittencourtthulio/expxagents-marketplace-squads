@@ -1,0 +1,78 @@
+squad:
+  code: c-level-squad
+  name: C-Level Squad
+  description: Virtual C-suite for executive-level strategic planning and decision-making
+  icon: building
+  version: "1.0.0"
+  category: general
+  tags:
+    - c-suite
+    - strategy
+    - executive
+    - operations
+    - leadership
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Founders and business leaders needing C-level perspectives"
+  platform: "Report"
+  format: "executive-brief"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: vision-chief
+      name: Vision Chief (CEO)
+      icon: crown
+      prompt: agents/vision-chief.agent.md
+    - id: operations-officer
+      name: Operations Officer (COO)
+      icon: settings
+      prompt: agents/operations-officer.agent.md
+    - id: marketing-officer
+      name: Marketing Officer (CMO)
+      icon: megaphone
+      prompt: agents/marketing-officer.agent.md
+    - id: technology-officer
+      name: Technology Officer (CTO)
+      icon: cpu
+      prompt: agents/technology-officer.agent.md
+    - id: information-officer
+      name: Information Officer (CIO)
+      icon: database
+      prompt: agents/information-officer.agent.md
+    - id: ai-officer
+      name: AI Officer (CAIO)
+      icon: sparkles
+      prompt: agents/ai-officer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: vision-chief
+        label: Diagnose executive challenge and classify strategic domains
+        execution: inline
+      - id: step-02
+        agent: vision-chief
+        label: Delegate to relevant C-suite officers for domain analysis
+        deliverFrom: vision-chief
+        execution: inline
+      - id: step-03
+        agent: vision-chief
+        label: Consolidate officer analyses into integrated executive view
+        deliverFrom: vision-chief
+        execution: inline
+      - id: step-04
+        agent: vision-chief
+        label: Deliver board-ready Executive Brief with decisions and actions
+        deliverFrom: vision-chief
+        execution: inline
