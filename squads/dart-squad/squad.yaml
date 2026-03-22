@@ -1,0 +1,90 @@
+squad:
+  code: dart-squad
+  name: Dart Squad
+  description: Dart and Flutter development — mobile, web, desktop, state management, and server-side Dart
+  icon: smartphone
+  version: "1.0.0"
+  category: development
+  tags:
+    - dart
+    - flutter
+    - riverpod
+    - bloc
+    - flutter-web
+    - flutter-desktop
+    - dart-frog
+    - shelf
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Flutter and Dart developers"
+  platform: "Report"
+  format: "dart-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: dart-chief
+      name: Dart Chief
+      icon: smartphone
+      prompt: agents/dart-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: flutter-specialist
+      name: Flutter Specialist
+      icon: layers
+      prompt: agents/flutter-specialist.agent.md
+    - id: flutter-web-specialist
+      name: Flutter Web Specialist
+      icon: globe
+      prompt: agents/flutter-web-specialist.agent.md
+    - id: backend-specialist
+      name: Backend Specialist
+      icon: database
+      prompt: agents/backend-specialist.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: dart-chief
+        label: Diagnose Dart/Flutter challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: dart-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: dart-chief
+        execution: inline
+      - id: step-03
+        agent: dart-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: dart-chief
+        execution: inline
+      - id: step-04
+        agent: dart-chief
+        label: Implement and review code against Dart/Flutter best practices
+        deliverFrom: dart-chief
+        execution: inline
+      - id: step-05
+        agent: dart-chief
+        label: Final review and Dart Development Report delivery
+        deliverFrom: dart-chief
+        execution: inline
