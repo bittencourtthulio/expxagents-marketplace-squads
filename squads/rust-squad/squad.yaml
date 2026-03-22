@@ -1,0 +1,92 @@
+squad:
+  code: rust-squad
+  name: Rust Squad
+  description: Rust development — web services, systems programming, async, WebAssembly, and memory-safe systems
+  icon: shield
+  version: "1.0.0"
+  category: development
+  tags:
+    - rust
+    - actix
+    - axum
+    - tokio
+    - wasm
+    - systems
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Rust developers and systems engineers"
+  platform: "Report"
+  format: "rust-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: rust-chief
+      name: Rust Chief
+      icon: shield
+      prompt: agents/rust-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: web-specialist
+      name: Web Specialist
+      icon: globe
+      prompt: agents/web-specialist.agent.md
+    - id: systems-architect
+      name: Systems Architect
+      icon: cpu
+      prompt: agents/systems-architect.agent.md
+    - id: async-specialist
+      name: Async Specialist
+      icon: zap
+      prompt: agents/async-specialist.agent.md
+    - id: wasm-engineer
+      name: WebAssembly Engineer
+      icon: box
+      prompt: agents/wasm-engineer.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: check-square
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: rust-chief
+        label: Diagnose Rust challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: rust-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: rust-chief
+        execution: inline
+      - id: step-03
+        agent: rust-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: rust-chief
+        execution: inline
+      - id: step-04
+        agent: rust-chief
+        label: Implement and review code against Rust best practices
+        deliverFrom: rust-chief
+        execution: inline
+      - id: step-05
+        agent: rust-chief
+        label: Final review and Rust Development Report delivery
+        deliverFrom: rust-chief
+        execution: inline
