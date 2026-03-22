@@ -1,0 +1,92 @@
+squad:
+  code: kotlin-squad
+  name: Kotlin Squad
+  description: Kotlin development — Android Jetpack Compose, Ktor server, KMP multiplatform, and Spring Boot integration
+  icon: diamond
+  version: "1.0.0"
+  category: development
+  tags:
+    - kotlin
+    - android
+    - compose
+    - ktor
+    - kmp
+    - spring-boot
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Kotlin and Android developers"
+  platform: "Report"
+  format: "kotlin-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: kotlin-chief
+      name: Kotlin Chief
+      icon: diamond
+      prompt: agents/kotlin-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: android-specialist
+      name: Android Specialist
+      icon: smartphone
+      prompt: agents/android-specialist.agent.md
+    - id: ktor-specialist
+      name: Ktor Specialist
+      icon: zap
+      prompt: agents/ktor-specialist.agent.md
+    - id: multiplatform-engineer
+      name: Multiplatform Engineer
+      icon: layers
+      prompt: agents/multiplatform-engineer.agent.md
+    - id: spring-kotlin-specialist
+      name: Spring Kotlin Specialist
+      icon: leaf
+      prompt: agents/spring-kotlin-specialist.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: kotlin-chief
+        label: Diagnose Kotlin challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: kotlin-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: kotlin-chief
+        execution: inline
+      - id: step-03
+        agent: kotlin-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: kotlin-chief
+        execution: inline
+      - id: step-04
+        agent: kotlin-chief
+        label: Implement and review code against Kotlin best practices
+        deliverFrom: kotlin-chief
+        execution: inline
+      - id: step-05
+        agent: kotlin-chief
+        label: Final review and Kotlin Development Report delivery
+        deliverFrom: kotlin-chief
+        execution: inline
