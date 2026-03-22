@@ -1,0 +1,96 @@
+squad:
+  code: storytelling
+  name: Storytelling
+  description: Story development, brand narratives, pitches, and presentations using frameworks from legendary storytellers
+  icon: book-open
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - storytelling
+    - narrative
+    - screenplay
+    - pitch
+    - presentation
+    - brand-story
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Founders, marketers, and content creators"
+  platform: "Report"
+  format: "narrative-deliverable"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: story-chief
+      name: Story Chief
+      icon: book-open
+      prompt: agents/story-chief.agent.md
+    - id: myth-architect
+      name: Myth Architect
+      icon: compass
+      prompt: agents/myth-architect.agent.md
+    - id: story-circle-writer
+      name: Story Circle Writer
+      icon: refresh-cw
+      prompt: agents/story-circle-writer.agent.md
+    - id: beat-sheet-writer
+      name: Beat Sheet Writer
+      icon: list
+      prompt: agents/beat-sheet-writer.agent.md
+    - id: story-editor
+      name: Story Editor
+      icon: edit
+      prompt: agents/story-editor.agent.md
+    - id: personal-narrator
+      name: Personal Narrator
+      icon: user
+      prompt: agents/personal-narrator.agent.md
+    - id: business-storyteller
+      name: Business Storyteller
+      icon: briefcase
+      prompt: agents/business-storyteller.agent.md
+    - id: pitch-master
+      name: Pitch Master
+      icon: zap
+      prompt: agents/pitch-master.agent.md
+    - id: presentation-designer
+      name: Presentation Designer
+      icon: monitor
+      prompt: agents/presentation-designer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: story-chief
+        label: Diagnose the storytelling challenge and identify the right frameworks
+        execution: inline
+      - id: step-02
+        agent: story-chief
+        label: Route to specialist storytellers for framework-specific development
+        deliverFrom: story-chief
+        execution: inline
+      - id: step-03
+        agent: story-chief
+        label: Draft the narrative using the selected framework
+        deliverFrom: story-chief
+        execution: inline
+      - id: step-04
+        agent: story-chief
+        label: Edit and refine for impact, clarity, and emotional resonance
+        deliverFrom: story-chief
+        execution: inline
+      - id: step-05
+        agent: story-chief
+        label: Final review and narrative deliverable delivery
+        deliverFrom: story-chief
+        execution: inline
