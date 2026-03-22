@@ -1,0 +1,86 @@
+squad:
+  code: advisory-board
+  name: Advisory Board
+  description: Virtual board of world-class strategic thinkers for founders and leaders — investment, culture, scaling, and leadership decisions
+  icon: briefcase
+  version: "1.0.0"
+  category: general
+  tags:
+    - strategy
+    - advisory
+    - leadership
+    - investment
+    - culture
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Founders, CEOs, and executive leaders"
+  platform: "Report"
+  format: "strategic-advisory"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: board-chair
+      name: Board Chair
+      icon: crown
+      prompt: agents/board-chair.agent.md
+    - id: principles-strategist
+      name: Principles Strategist
+      icon: scroll
+      prompt: agents/principles-strategist.agent.md
+    - id: mental-models-analyst
+      name: Mental Models Analyst
+      icon: brain
+      prompt: agents/mental-models-analyst.agent.md
+    - id: first-principles-advisor
+      name: First Principles Advisor
+      icon: lightbulb
+      prompt: agents/first-principles-advisor.agent.md
+    - id: contrarian-strategist
+      name: Contrarian Strategist
+      icon: chess-pawn
+      prompt: agents/contrarian-strategist.agent.md
+    - id: network-scaling-advisor
+      name: Network Scaling Advisor
+      icon: globe
+      prompt: agents/network-scaling-advisor.agent.md
+    - id: purpose-advisor
+      name: Purpose Advisor
+      icon: compass
+      prompt: agents/purpose-advisor.agent.md
+    - id: culture-advisor
+      name: Culture Advisor
+      icon: heart
+      prompt: agents/culture-advisor.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: board-chair
+        label: Diagnose strategic challenge and identify relevant advisors
+        execution: inline
+      - id: step-02
+        agent: board-chair
+        label: Route to specialist advisors for domain-specific counsel
+        deliverFrom: board-chair
+        execution: inline
+      - id: step-03
+        agent: board-chair
+        label: Synthesize multi-perspective strategic recommendation
+        deliverFrom: board-chair
+        execution: inline
+      - id: step-04
+        agent: board-chair
+        label: Final review and strategic recommendation delivery
+        deliverFrom: board-chair
+        execution: inline
