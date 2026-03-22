@@ -1,0 +1,88 @@
+squad:
+  code: expxagents-mastery
+  name: ExpxAgents Mastery
+  description: Master the ExpxAgents platform — create squads, configure pipelines, write agents, publish to marketplace
+  icon: graduation-cap
+  version: "1.0.0"
+  category: development
+  tags:
+    - expxagents
+    - squads
+    - pipelines
+    - marketplace
+    - agents
+    - platform
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "New and experienced ExpxAgents users"
+  platform: "Tutorial"
+  format: "tutorial-guide"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: mastery-chief
+      name: Mastery Chief
+      icon: graduation-cap
+      prompt: agents/mastery-chief.agent.md
+    - id: squad-architect
+      name: Squad Architect
+      icon: layout
+      prompt: agents/squad-architect.agent.md
+    - id: pipeline-engineer
+      name: Pipeline Engineer
+      icon: git-branch
+      prompt: agents/pipeline-engineer.agent.md
+    - id: agent-craftsman
+      name: Agent Craftsman
+      icon: pen-tool
+      prompt: agents/agent-craftsman.agent.md
+    - id: marketplace-guide
+      name: Marketplace Guide
+      icon: store
+      prompt: agents/marketplace-guide.agent.md
+    - id: skill-builder
+      name: Skill Builder
+      icon: zap
+      prompt: agents/skill-builder.agent.md
+    - id: integration-specialist
+      name: Integration Specialist
+      icon: plug
+      prompt: agents/integration-specialist.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: mastery-chief
+        label: Diagnose user's platform knowledge level and identify the learning gap
+        execution: inline
+      - id: step-02
+        agent: mastery-chief
+        label: Route to specialist and guide through platform concept
+        deliverFrom: mastery-chief
+        execution: inline
+      - id: step-03
+        agent: mastery-chief
+        label: Provide hands-on help with concrete examples and templates
+        deliverFrom: mastery-chief
+        execution: inline
+      - id: step-04
+        agent: mastery-chief
+        label: Validate user's implementation against platform conventions
+        deliverFrom: mastery-chief
+        execution: inline
+      - id: step-05
+        agent: mastery-chief
+        label: Final review and mastery guide delivery
+        deliverFrom: mastery-chief
+        execution: inline
