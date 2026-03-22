@@ -1,0 +1,99 @@
+squad:
+  code: brand-squad
+  name: Brand Squad
+  description: End-to-end brand strategy — equity, positioning, identity, messaging, and architecture
+  icon: palette
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - branding
+    - positioning
+    - identity
+    - messaging
+    - brand-strategy
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Founders, brand managers, and marketing leaders"
+  platform: "Report"
+  format: "brand-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: brand-chief
+      name: Brand Chief
+      icon: palette
+      prompt: agents/brand-chief.agent.md
+    - id: brand-equity-strategist
+      name: Brand Equity Strategist
+      icon: award
+      prompt: agents/brand-equity-strategist.agent.md
+    - id: positioning-specialist
+      name: Positioning Specialist
+      icon: target
+      prompt: agents/positioning-specialist.agent.md
+    - id: evidence-based-strategist
+      name: Evidence-Based Strategist
+      icon: bar-chart
+      prompt: agents/evidence-based-strategist.agent.md
+    - id: brand-messaging-architect
+      name: Brand Messaging Architect
+      icon: message-square
+      prompt: agents/brand-messaging-architect.agent.md
+    - id: brand-identity-designer
+      name: Brand Identity Designer
+      icon: pen-tool
+      prompt: agents/brand-identity-designer.agent.md
+    - id: naming-strategist
+      name: Naming Strategist
+      icon: tag
+      prompt: agents/naming-strategist.agent.md
+    - id: archetype-consultant
+      name: Archetype Consultant
+      icon: layers
+      prompt: agents/archetype-consultant.agent.md
+    - id: brand-culture-specialist
+      name: Brand Culture Specialist
+      icon: users
+      prompt: agents/brand-culture-specialist.agent.md
+    - id: startup-brand-advisor
+      name: Startup Brand Advisor
+      icon: zap
+      prompt: agents/startup-brand-advisor.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: brand-chief
+        label: Diagnose brand challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: brand-chief
+        label: Route to brand specialists for domain-specific analysis
+        deliverFrom: brand-chief
+        execution: inline
+      - id: step-03
+        agent: brand-chief
+        label: Synthesize brand strategy from specialist perspectives
+        deliverFrom: brand-chief
+        execution: inline
+      - id: step-04
+        agent: brand-chief
+        label: Build identity and messaging recommendations
+        deliverFrom: brand-chief
+        execution: inline
+      - id: step-05
+        agent: brand-chief
+        label: Final brand strategy report and implementation roadmap
+        deliverFrom: brand-chief
+        execution: inline
