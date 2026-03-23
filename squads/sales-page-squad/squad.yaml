@@ -1,0 +1,92 @@
+squad:
+  code: sales-page-squad
+  name: Sales Page Squad
+  description: Strategy, structure, and design direction for sales pages, VSL pages, launch pages, webinar pages, and long-form sales copy
+  icon: dollar-sign
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - sales-page
+    - vsl
+    - launch
+    - long-form
+    - persuasion
+    - offer
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Entrepreneurs, course creators, agencies, and marketing teams building high-ticket or direct-response sales pages"
+  platform: "Report"
+  format: "sales-page-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: sales-page-chief
+      name: Sales Page Architect Chief
+      icon: dollar-sign
+      prompt: agents/sales-page-chief.agent.md
+    - id: offer-architect
+      name: Offer Architect
+      icon: package
+      prompt: agents/offer-architect.agent.md
+    - id: sales-copywriter
+      name: Sales Copywriter
+      icon: pen-tool
+      prompt: agents/sales-copywriter.agent.md
+    - id: objection-handler
+      name: Objection Handler Specialist
+      icon: shield
+      prompt: agents/objection-handler.agent.md
+    - id: sales-ux-designer
+      name: Sales Page UX/UI Designer
+      icon: smartphone
+      prompt: agents/sales-ux-designer.agent.md
+    - id: vsl-strategist
+      name: VSL Strategist
+      icon: video
+      prompt: agents/vsl-strategist.agent.md
+    - id: urgency-strategist
+      name: Urgency & Scarcity Strategist
+      icon: clock
+      prompt: agents/urgency-strategist.agent.md
+    - id: launch-strategist
+      name: Launch Strategist
+      icon: rocket
+      prompt: agents/launch-strategist.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: sales-page-chief
+        label: Receive briefing, diagnose sale type and audience temperature
+        execution: inline
+      - id: step-02
+        agent: sales-page-chief
+        label: Route to Offer Architect and Launch Strategist for offer construction and strategy
+        deliverFrom: sales-page-chief
+        execution: inline
+      - id: step-03
+        agent: sales-page-chief
+        label: Route to Sales Copywriter and Objection Handler for persuasion copy and resistance handling
+        deliverFrom: sales-page-chief
+        execution: inline
+      - id: step-04
+        agent: sales-page-chief
+        label: Route to VSL Strategist for video sales letter direction (when applicable)
+        deliverFrom: sales-page-chief
+        execution: inline
+      - id: step-05
+        agent: sales-page-chief
+        label: Synthesize Sales Page Strategy Report with visual direction and urgency strategy
+        deliverFrom: sales-page-chief
+        execution: inline
