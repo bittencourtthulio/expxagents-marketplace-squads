@@ -3,7 +3,7 @@ squad:
   name: Brand Squad
   description: End-to-end brand strategy — equity, positioning, identity, messaging, and architecture
   icon: palette
-  version: "1.0.0"
+  version: "1.1.0"
   category: marketing
   tags:
     - branding
@@ -23,6 +23,7 @@ squad:
   skills:
     - web_search
     - web_fetch
+    - frontend-design
 
   schedule:
     enabled: true
@@ -77,23 +78,46 @@ squad:
         agent: brand-chief
         label: Diagnose brand challenge and identify relevant specialists
         execution: inline
+
       - id: step-02
         agent: brand-chief
         label: Route to brand specialists for domain-specific analysis
         deliverFrom: brand-chief
         execution: inline
+        parallel_agents: true
+
       - id: step-03
         agent: brand-chief
-        label: Synthesize brand strategy from specialist perspectives
+        label: Synthesize brand strategy and present checkpoint for approval
         deliverFrom: brand-chief
         execution: inline
+        checkpoint: true
+        on_reject: step-02
+
       - id: step-04
         agent: brand-chief
         label: Build identity and messaging recommendations
         deliverFrom: brand-chief
         execution: inline
+
       - id: step-05
         agent: brand-chief
         label: Final brand strategy report and implementation roadmap
         deliverFrom: brand-chief
         execution: inline
+        output: brand-strategy-report.md
+
+      - id: step-06
+        agent: brand-chief
+        label: Generate immersive HTML presentation with Three.js
+        deliverFrom: brand-chief
+        execution: inline
+        output: brand-strategy-presentation.html
+        skill: frontend-design
+
+      - id: step-07
+        agent: brand-chief
+        label: Final checkpoint, memory update, and delivery
+        deliverFrom: brand-chief
+        execution: inline
+        checkpoint: true
