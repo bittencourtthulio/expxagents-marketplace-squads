@@ -1,0 +1,92 @@
+squad:
+  code: product-squad
+  name: Product Squad
+  description: Product strategy, requirements, roadmapping, user research, agile process, and go-to-market planning
+  icon: package
+  version: "1.0.0"
+  category: general
+  tags:
+    - product-management
+    - roadmap
+    - requirements
+    - user-research
+    - agile
+    - go-to-market
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Product managers, founders, CPOs, and product teams"
+  platform: "Report"
+  format: "product-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: product-chief
+      name: Product Chief
+      icon: package
+      prompt: agents/product-chief.agent.md
+    - id: product-strategist
+      name: Product Strategist
+      icon: compass
+      prompt: agents/product-strategist.agent.md
+    - id: ux-researcher
+      name: UX Researcher
+      icon: users
+      prompt: agents/ux-researcher.agent.md
+    - id: requirements-analyst
+      name: Requirements Analyst
+      icon: clipboard
+      prompt: agents/requirements-analyst.agent.md
+    - id: agile-coach
+      name: Agile Coach
+      icon: refresh-cw
+      prompt: agents/agile-coach.agent.md
+    - id: gtm-strategist
+      name: Go-to-Market Strategist
+      icon: rocket
+      prompt: agents/gtm-strategist.agent.md
+    - id: pricing-analyst
+      name: Pricing Analyst
+      icon: dollar-sign
+      prompt: agents/pricing-analyst.agent.md
+    - id: product-analyst
+      name: Product Analyst
+      icon: bar-chart
+      prompt: agents/product-analyst.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: product-chief
+        label: Diagnose product challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: product-chief
+        label: Route to specialists for domain-specific analysis
+        deliverFrom: product-chief
+        execution: inline
+      - id: step-03
+        agent: product-chief
+        label: Synthesize product strategy and validate priorities
+        deliverFrom: product-chief
+        execution: inline
+      - id: step-04
+        agent: product-chief
+        label: Build roadmap and go-to-market recommendations
+        deliverFrom: product-chief
+        execution: inline
+      - id: step-05
+        agent: product-chief
+        label: Final Product Strategy Report and action plan
+        deliverFrom: product-chief
+        execution: inline
