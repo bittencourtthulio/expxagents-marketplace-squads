@@ -1,0 +1,92 @@
+squad:
+  code: institutional-web-squad
+  name: Institutional Web Squad
+  description: Strategy, structure, and design direction for institutional websites, corporate sites, portfolios, and multi-page web projects
+  icon: globe
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - institutional
+    - website
+    - corporate
+    - portfolio
+    - information-architecture
+    - ux-design
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Founders, marketing teams, agencies, and solopreneurs building institutional or corporate websites"
+  platform: "Report"
+  format: "institutional-web-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: institutional-web-chief
+      name: Web Strategist Chief
+      icon: globe
+      prompt: agents/institutional-web-chief.agent.md
+    - id: information-architect
+      name: Information Architect
+      icon: sitemap
+      prompt: agents/information-architect.agent.md
+    - id: ux-strategist
+      name: UX Strategist
+      icon: users
+      prompt: agents/ux-strategist.agent.md
+    - id: ui-art-director
+      name: UI Art Director
+      icon: paintbrush
+      prompt: agents/ui-art-director.agent.md
+    - id: content-strategist
+      name: Content Strategist
+      icon: file-text
+      prompt: agents/content-strategist.agent.md
+    - id: seo-specialist
+      name: SEO Specialist
+      icon: search
+      prompt: agents/seo-specialist.agent.md
+    - id: brand-alignment-specialist
+      name: Brand Alignment Specialist
+      icon: check-circle
+      prompt: agents/brand-alignment-specialist.agent.md
+    - id: web-analytics-planner
+      name: Web Analytics Planner
+      icon: bar-chart
+      prompt: agents/web-analytics-planner.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: institutional-web-chief
+        label: Receive briefing, diagnose site type and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: institutional-web-chief
+        label: Route to Information Architect and UX Strategist for structure and user flows
+        deliverFrom: institutional-web-chief
+        execution: inline
+      - id: step-03
+        agent: institutional-web-chief
+        label: Route to UI Art Director and Brand Alignment for visual direction
+        deliverFrom: institutional-web-chief
+        execution: inline
+      - id: step-04
+        agent: institutional-web-chief
+        label: Route to Content Strategist and SEO Specialist for content and discoverability
+        deliverFrom: institutional-web-chief
+        execution: inline
+      - id: step-05
+        agent: institutional-web-chief
+        label: Synthesize Web Strategy Report with Analytics Plan and implementation roadmap
+        deliverFrom: institutional-web-chief
+        execution: inline
