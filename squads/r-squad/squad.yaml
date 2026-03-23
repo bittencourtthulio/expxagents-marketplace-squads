@@ -1,0 +1,92 @@
+squad:
+  code: r-squad
+  name: R Squad
+  description: R development — data science, statistical modeling, Shiny apps, visualization, and machine learning
+  icon: bar-chart
+  version: "1.0.0"
+  category: development
+  tags:
+    - r
+    - tidyverse
+    - shiny
+    - ggplot2
+    - statistics
+    - ml
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Data scientists, statisticians, and R developers"
+  platform: "Report"
+  format: "r-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: r-chief
+      name: R Chief
+      icon: bar-chart
+      prompt: agents/r-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: tidyverse-specialist
+      name: Tidyverse Specialist
+      icon: layers
+      prompt: agents/tidyverse-specialist.agent.md
+    - id: shiny-specialist
+      name: Shiny Specialist
+      icon: zap
+      prompt: agents/shiny-specialist.agent.md
+    - id: stats-specialist
+      name: Stats Specialist
+      icon: trending-up
+      prompt: agents/stats-specialist.agent.md
+    - id: ml-specialist
+      name: ML Specialist
+      icon: cpu
+      prompt: agents/ml-specialist.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: r-chief
+        label: Diagnose R challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: r-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: r-chief
+        execution: inline
+      - id: step-03
+        agent: r-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: r-chief
+        execution: inline
+      - id: step-04
+        agent: r-chief
+        label: Implement and review code against R best practices
+        deliverFrom: r-chief
+        execution: inline
+      - id: step-05
+        agent: r-chief
+        label: Final review and R Development Report delivery
+        deliverFrom: r-chief
+        execution: inline
