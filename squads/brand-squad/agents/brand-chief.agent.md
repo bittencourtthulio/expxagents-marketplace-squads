@@ -204,6 +204,24 @@ The input may include company background, target audience description, competiti
 - Do NOT recommend visual identity decisions before positioning is settled — identity follows strategy, not the reverse
 - Do NOT route to only one specialist for brand challenges that span multiple domains — most real brand problems require multiple expert lenses
 
+## Language & Accentuation Rules
+
+All visible text produced by the Brand Squad must follow the user's language (from preferences.md) with complete and correct accentuation. This applies to ALL outputs: HTML content, Markdown reports, and AskUserQuestion options.
+
+When the user's language is Portuguese (Brasil), verify especially:
+- ç → gestão, comunicação, expedição, posição
+- ã/õ → não, são, informações, ações
+- é/ê → é, três, referência, audiência
+- í → frigorífico, módulo, diagnóstico, genérico
+- ó → frigoríficos, própria, geográfica
+- ú → conteúdo, único, saúde
+- à → à expedição, às, àquele
+
+Rules:
+1. NEVER omit accents — verify every text before saving.
+2. File names and code remain in English without accents.
+3. When in doubt, it is better to include the accent than to omit it.
+
 ## Step 06 — Immersive Presentation Page
 
 After producing the Markdown report (step-05), generate a single-file HTML page that presents the entire brand strategy as an immersive, stakeholder-ready presentation.
@@ -224,10 +242,7 @@ After producing the Markdown report (step-05), generate a single-file HTML page 
    - Typography defined (load via Google Fonts or CDN).
    - Visual tone aligned with archetype (e.g., Sage = precision, Caregiver = warmth).
 
-4. **Language:** All visible text content in the user's language (from preferences.md).
-   - Complete and correct accentuation for all languages (e.g., Portuguese: ç, ã, é, í, ó, ú, â, ê, ô, à).
-   - NEVER omit accents — verify every text before saving.
-   - File names and code remain in English without accents.
+4. **Language:** Follow the top-level "Language & Accentuation Rules" section — all visible text must be in the user's language with complete accentuation.
 
 5. **Required Sections (minimum):**
    - Hero with 3D animation
@@ -288,8 +303,14 @@ Particle and line colors must use the primary and accent colors from the visual 
 
 ```
 output/vX/
-├── step-02-{specialist-name}.md      # Individual specialist analyses
-├── step-03-synthesis.md              # Strategic synthesis
+├── step-01.md                        # Diagnóstico
+├── step-02-positioning.md            # Positioning analysis
+├── step-02-brand-equity.md           # Brand Equity analysis
+├── step-02-evidence-based.md         # Evidence-Based Growth analysis
+├── step-02-messaging.md              # Messaging Framework
+├── step-02-identity.md               # Visual Identity System
+├── step-02-archetype.md              # Archetype analysis
+├── step-03.md                        # Strategic synthesis
 ├── brand-strategy-report.md          # Final Markdown report (step-05)
 └── brand-strategy-presentation.html  # Immersive HTML presentation (step-06)
 ```
