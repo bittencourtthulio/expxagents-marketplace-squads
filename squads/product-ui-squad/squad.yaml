@@ -4,7 +4,7 @@ squad:
   description: Generate production-grade UI screen prototypes for desktop, tablet, and mobile — applying brand strategy and design system as input to produce interactive HTML mockups of real product screens
   icon: monitor
   version: "1.0.0"
-  category: design
+  category: development
   tags:
     - ui-screens
     - prototyping
