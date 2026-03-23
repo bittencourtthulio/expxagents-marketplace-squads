@@ -1,0 +1,97 @@
+squad:
+  code: product-ui-squad
+  name: Product UI Squad
+  description: Generate production-grade UI screen prototypes for desktop, tablet, and mobile — applying brand strategy and design system as input to produce interactive HTML mockups of real product screens
+  icon: monitor
+  version: "1.0.0"
+  category: design
+  tags:
+    - ui-screens
+    - prototyping
+    - responsive
+    - product-design
+    - mockups
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Product teams, founders, developers, and design stakeholders"
+  platform: "HTML Prototypes"
+  format: "ui-screens"
+
+  skills:
+    - web_search
+    - web_fetch
+    - frontend-design
+
+  schedule:
+    enabled: true
+
+  visual_templates:
+    enabled: true
+    format: "16:9"
+    count: 3
+
+  data: []
+
+  agents:
+    - id: ui-director
+      name: "Marcos Tavares"
+      icon: paintbrush
+      avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Marcos"
+      prompt: agents/ui-director.agent.md
+    - id: dashboard-designer
+      name: "Beatriz Campos"
+      icon: bar-chart
+      avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Beatriz"
+      prompt: agents/dashboard-designer.agent.md
+    - id: form-workflow-designer
+      name: "Pedro Almeida"
+      icon: clipboard
+      avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Pedro"
+      prompt: agents/form-workflow-designer.agent.md
+    - id: mobile-adapter
+      name: "Camila Ferreira"
+      icon: smartphone
+      avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Camila"
+      prompt: agents/mobile-adapter.agent.md
+    - id: responsive-architect
+      name: "Diego Santana"
+      icon: maximize
+      avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Diego"
+      prompt: agents/responsive-architect.agent.md
+    - id: frontend-prototyper
+      name: "Juliana Costa"
+      icon: code
+      avatar: "https://api.dicebear.com/9.x/adventurer/svg?seed=Juliana"
+      prompt: agents/frontend-prototyper.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: ui-director
+        label: Plan screen inventory, viewport matrix, and priority order
+        execution: inline
+      - id: step-02
+        agent: ui-director
+        label: Route to specialists for screen design (parallel execution)
+        deliverFrom: ui-director
+        execution: inline
+      - id: step-03
+        agent: ui-director
+        label: Synthesize screen designs and present checkpoint
+        deliverFrom: ui-director
+        execution: inline
+        checkpoint: true
+        on_reject: step-02
+      - id: step-04
+        agent: frontend-prototyper
+        label: Generate interactive HTML prototypes with design tokens
+        deliverFrom: ui-director
+        execution: inline
+      - id: step-05
+        agent: ui-director
+        label: Final presentation page with Three.js and device frames
+        deliverFrom: frontend-prototyper
+        execution: inline
