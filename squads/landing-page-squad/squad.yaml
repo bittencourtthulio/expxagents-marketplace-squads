@@ -1,0 +1,92 @@
+squad:
+  code: landing-page-squad
+  name: Landing Page Squad
+  description: Strategy, structure, and design direction for high-converting landing pages, capture pages, squeeze pages, and opt-in pages
+  icon: target
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - landing-page
+    - conversion
+    - capture-page
+    - squeeze-page
+    - opt-in
+    - cro
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Marketers, agencies, growth teams, and solopreneurs building conversion-focused landing pages"
+  platform: "Report"
+  format: "landing-page-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: landing-page-chief
+      name: Conversion Strategist Chief
+      icon: target
+      prompt: agents/landing-page-chief.agent.md
+    - id: conversion-architect
+      name: Conversion Architect
+      icon: layout
+      prompt: agents/conversion-architect.agent.md
+    - id: persuasion-copywriter
+      name: Persuasion Copywriter
+      icon: edit
+      prompt: agents/persuasion-copywriter.agent.md
+    - id: cro-specialist
+      name: CRO Specialist
+      icon: trending-up
+      prompt: agents/cro-specialist.agent.md
+    - id: landing-ux-designer
+      name: Landing Page UX/UI Designer
+      icon: monitor
+      prompt: agents/landing-ux-designer.agent.md
+    - id: social-proof-strategist
+      name: Social Proof Strategist
+      icon: star
+      prompt: agents/social-proof-strategist.agent.md
+    - id: lead-magnet-architect
+      name: Lead Magnet Architect
+      icon: gift
+      prompt: agents/lead-magnet-architect.agent.md
+    - id: ab-testing-planner
+      name: A/B Testing Planner
+      icon: git-branch
+      prompt: agents/ab-testing-planner.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: landing-page-chief
+        label: Receive briefing, diagnose conversion objective and audience awareness level
+        execution: inline
+      - id: step-02
+        agent: landing-page-chief
+        label: Route to Conversion Architect and Lead Magnet Architect for structure and offer
+        deliverFrom: landing-page-chief
+        execution: inline
+      - id: step-03
+        agent: landing-page-chief
+        label: Route to Persuasion Copywriter and Social Proof Strategist for copy and trust
+        deliverFrom: landing-page-chief
+        execution: inline
+      - id: step-04
+        agent: landing-page-chief
+        label: Route to Landing UX/UI Designer for visual conversion direction
+        deliverFrom: landing-page-chief
+        execution: inline
+      - id: step-05
+        agent: landing-page-chief
+        label: Synthesize Landing Page Strategy Report with CRO analysis and testing roadmap
+        deliverFrom: landing-page-chief
+        execution: inline
