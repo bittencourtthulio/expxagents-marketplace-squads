@@ -1,0 +1,88 @@
+squad:
+  code: perl-squad
+  name: Perl Squad
+  description: Perl development — web frameworks, system automation, bioinformatics, regex mastery, and modern Perl
+  icon: terminal
+  version: "1.0.0"
+  category: development
+  tags:
+    - perl
+    - mojolicious
+    - dancer
+    - cpan
+    - automation
+    - bioinformatics
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Perl developers, sysadmins, and bioinformaticians"
+  platform: "Report"
+  format: "perl-development"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: perl-chief
+      name: Perl Chief
+      icon: terminal
+      prompt: agents/perl-chief.agent.md
+    - id: code-quality-advisor
+      name: Code Quality Advisor
+      icon: check-circle
+      prompt: agents/code-quality-advisor.agent.md
+    - id: devops-engineer
+      name: DevOps Engineer
+      icon: server
+      prompt: agents/devops-engineer.agent.md
+    - id: web-specialist
+      name: Web Specialist
+      icon: globe
+      prompt: agents/web-specialist.agent.md
+    - id: automation-specialist
+      name: Automation Specialist
+      icon: zap
+      prompt: agents/automation-specialist.agent.md
+    - id: bioinformatics-specialist
+      name: Bioinformatics Specialist
+      icon: cpu
+      prompt: agents/bioinformatics-specialist.agent.md
+    - id: test-engineer
+      name: Test Engineer
+      icon: shield
+      prompt: agents/test-engineer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: perl-chief
+        label: Diagnose Perl challenge and identify relevant specialists
+        execution: inline
+      - id: step-02
+        agent: perl-chief
+        label: Route to specialist agents for domain-specific implementation
+        deliverFrom: perl-chief
+        execution: inline
+      - id: step-03
+        agent: perl-chief
+        label: Architect the solution and validate design decisions
+        deliverFrom: perl-chief
+        execution: inline
+      - id: step-04
+        agent: perl-chief
+        label: Implement and review code against Modern Perl best practices
+        deliverFrom: perl-chief
+        execution: inline
+      - id: step-05
+        agent: perl-chief
+        label: Final review and Perl Development Report delivery
+        deliverFrom: perl-chief
+        execution: inline
