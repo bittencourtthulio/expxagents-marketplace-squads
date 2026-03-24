@@ -16,6 +16,7 @@ Community squads for the [ExpxAgents](https://expxagents.dev) marketplace.
 | expxagents-mastery | development | 7 | Master the ExpxAgents platform |
 | hormozi-squad | commercial | 10 | Alex Hormozi's business scaling frameworks |
 | movement | marketing | 7 | Build movements that transcend brands |
+| product-blueprint-squad | strategy | 6 | Strategic product architecture — from briefing to blueprint |
 | storytelling | marketing | 9 | Story development with legendary frameworks |
 | traffic-masters | marketing | 10 | Paid traffic mastery across all platforms |
 
