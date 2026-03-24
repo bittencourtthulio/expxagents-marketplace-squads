@@ -891,13 +891,19 @@ Conteúdo inicial de `_memory/memories.md`:
          ▼
 ┌─────────────────┐
 │ Blueprint Chief  │ ← Sintetiza Product Blueprint Report
-│ (Step 6)         │
+│ (Step 6)         │   output: product-blueprint-report.md
 └────────┬────────┘
          │ report completo
          ▼
+┌─────────────────┐
+│ Blueprint Chief  │ ← Checkpoint: valida completude do report
+│ (Step 7)         │   on_reject → volta ao Step 6
+└────────┬────────┘
+         │ report aprovado
+         ▼
 ┌──────────────────────┐
 │Blueprint Visual      │ ← Gera página HTML
-│Designer (Step 7)     │
+│Designer (Step 8)     │   output: product-blueprint.html
 └──────────────────────┘
          │
          ▼
