@@ -1,0 +1,107 @@
+squad:
+  code: product-blueprint-squad
+  name: Product Blueprint Squad
+  description: "Strategic product architecture — from briefing to blueprint. Personas, value proposition, modules, user journey, MVP prioritization, and a visual HTML one-pager for stakeholders and dev teams."
+  icon: layers
+  version: "1.0.0"
+  category: strategy
+  tags:
+    - product
+    - blueprint
+    - strategy
+    - mvp
+    - product-design
+    - roadmap
+    - personas
+    - value-proposition
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Product managers, founders, CTOs, product designers, and teams structuring new products or pivoting existing ones"
+  platform: "Report"
+  format: "product-blueprint"
+
+  skills:
+    - web_search
+    - web_fetch
+    - frontend-design
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: blueprint-chief
+      name: Product Blueprint Chief
+      icon: compass
+      prompt: agents/blueprint-chief.agent.md
+    - id: market-researcher
+      name: Market Researcher
+      icon: search
+      prompt: agents/market-researcher.agent.md
+    - id: value-architect
+      name: Value Architect
+      icon: target
+      prompt: agents/value-architect.agent.md
+    - id: product-modeler
+      name: Product Modeler
+      icon: box
+      prompt: agents/product-modeler.agent.md
+    - id: mvp-strategist
+      name: MVP Strategist
+      icon: filter
+      prompt: agents/mvp-strategist.agent.md
+    - id: blueprint-visual-designer
+      name: Blueprint Visual Designer
+      icon: layout
+      prompt: agents/blueprint-visual-designer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: blueprint-chief
+        label: Receive briefing, diagnose product type, maturity stage, and complexity
+        execution: inline
+      - id: step-02
+        agent: market-researcher
+        label: Map market landscape, competitors, and build prioritized personas
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-03
+        agent: value-architect
+        label: Define value proposition, positioning, value curve, and business model
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-04
+        agent: product-modeler
+        label: Map product modules with justification and design user journey
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-05
+        agent: mvp-strategist
+        label: Prioritize modules (MoSCoW), define MVP, and build phased roadmap
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-06
+        agent: blueprint-chief
+        label: Synthesize Product Blueprint Report from all specialist outputs
+        deliverFrom: blueprint-chief
+        execution: inline
+        output: product-blueprint-report.md
+      - id: step-07
+        agent: blueprint-chief
+        label: Quality checkpoint — review report completeness before HTML generation
+        deliverFrom: blueprint-chief
+        execution: inline
+        checkpoint: true
+        on_reject: step-06
+      - id: step-08
+        agent: blueprint-visual-designer
+        label: Generate HTML one-pager from the approved Product Blueprint Report
+        deliverFrom: blueprint-chief
+        execution: inline
+        skill: frontend-design
+        output: product-blueprint.html
