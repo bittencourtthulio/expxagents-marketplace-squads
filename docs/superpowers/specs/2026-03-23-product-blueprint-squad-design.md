@@ -43,31 +43,115 @@ squads/product-blueprint-squad/
 
 ## 3. squad.yaml
 
-- **code:** `product-blueprint-squad`
-- **name:** Product Blueprint Squad
-- **version:** 1.0.0
-- **category:** strategy
-- **icon:** layers
-- **description:** "Strategic product architecture — from briefing to blueprint. Personas, value proposition, modules, user journey, MVP prioritization, and a visual HTML one-pager for stakeholders and dev teams."
-- **target_audience:** Product managers, founders, CTOs, product designers, and teams structuring new products or pivoting existing ones
-- **platform:** report
-- **skills:** web_search, web_fetch
-- **schedule:** enabled (true)
-- **tags:** product, blueprint, strategy, mvp, product-design, roadmap, personas, value-proposition
+```yaml
+squad:
+  code: product-blueprint-squad
+  name: Product Blueprint Squad
+  description: "Strategic product architecture — from briefing to blueprint. Personas, value proposition, modules, user journey, MVP prioritization, and a visual HTML one-pager for stakeholders and dev teams."
+  icon: layers
+  version: "1.0.0"
+  category: strategy
+  tags:
+    - product
+    - blueprint
+    - strategy
+    - mvp
+    - product-design
+    - roadmap
+    - personas
+    - value-proposition
 
-**Shared resources:**
-- company: `_expxagents/_memory/company.md`
-- preferences: `_expxagents/_memory/preferences.md`
-- memory: `_memory/memories.md`
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
 
-**Execution pipeline (sequential):**
-1. Blueprint Chief recebe briefing → diagnóstico do tipo de produto + maturidade
-2. Market Researcher → personas, mercado, competidores
-3. Value Architect → posicionamento, proposta de valor, modelo de negócio
-4. Product Modeler → módulos + jornada do usuário
-5. MVP Strategist → priorização e faseamento
-6. Blueprint Chief sintetiza → Product Blueprint Report
-7. Blueprint Visual Designer → página HTML
+  target_audience: "Product managers, founders, CTOs, product designers, and teams structuring new products or pivoting existing ones"
+  platform: "Report"
+  format: "product-blueprint"
+
+  skills:
+    - web_search
+    - web_fetch
+    - frontend-design
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: blueprint-chief
+      name: Product Blueprint Chief
+      icon: compass
+      prompt: agents/blueprint-chief.agent.md
+    - id: market-researcher
+      name: Market Researcher
+      icon: search
+      prompt: agents/market-researcher.agent.md
+    - id: value-architect
+      name: Value Architect
+      icon: target
+      prompt: agents/value-architect.agent.md
+    - id: product-modeler
+      name: Product Modeler
+      icon: box
+      prompt: agents/product-modeler.agent.md
+    - id: mvp-strategist
+      name: MVP Strategist
+      icon: filter
+      prompt: agents/mvp-strategist.agent.md
+    - id: blueprint-visual-designer
+      name: Blueprint Visual Designer
+      icon: layout
+      prompt: agents/blueprint-visual-designer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: blueprint-chief
+        label: Receive briefing, diagnose product type, maturity stage, and complexity
+        execution: inline
+      - id: step-02
+        agent: market-researcher
+        label: Map market landscape, competitors, and build prioritized personas
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-03
+        agent: value-architect
+        label: Define value proposition, positioning, value curve, and business model
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-04
+        agent: product-modeler
+        label: Map product modules with justification and design user journey
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-05
+        agent: mvp-strategist
+        label: Prioritize modules (MoSCoW), define MVP, and build phased roadmap
+        deliverFrom: blueprint-chief
+        execution: inline
+      - id: step-06
+        agent: blueprint-chief
+        label: Synthesize Product Blueprint Report from all specialist outputs
+        deliverFrom: blueprint-chief
+        execution: inline
+        output: product-blueprint-report.md
+      - id: step-07
+        agent: blueprint-chief
+        label: Quality checkpoint — review report completeness before HTML generation
+        deliverFrom: blueprint-chief
+        execution: inline
+        checkpoint: true
+        on_reject: step-06
+      - id: step-08
+        agent: blueprint-visual-designer
+        label: Generate HTML one-pager from the approved Product Blueprint Report
+        deliverFrom: blueprint-chief
+        execution: inline
+        skill: frontend-design
+        output: product-blueprint.html
+```
 
 ---
 
@@ -77,10 +161,22 @@ squads/product-blueprint-squad/
 
 - **base_agent:** product-strategist
 - **id:** squads/product-blueprint-squad/agents/blueprint-chief
+- **name:** Product Blueprint Chief
 - **icon:** compass
 - **execution:** inline
+- **skills:** web_search, web_fetch
 
 **Role:** Inteligência orquestradora que recebe o briefing do produto, diagnostica o contexto e roteia para os especialistas, depois sintetiza tudo no Product Blueprint Report.
+
+**Expected Input (briefing do produto):**
+O Chief aceita briefings em qualquer formato, mas o ideal contém:
+- Nome do produto (ou nome provisório)
+- Descrição em 1-3 parágrafos do que é o produto
+- Público-alvo pretendido (mesmo que vago)
+- Problema que resolve
+- Contexto adicional: setor, estágio atual, restrições, inspirações, competidores conhecidos
+
+Se o briefing for incompleto, o Chief deve inferir o que puder e sinalizar explicitamente o que está assumindo.
 
 **Diagnóstico inicial (antes de rotear):**
 - Tipo de produto (SaaS, produto físico, infoproduto, serviço, marketplace, app mobile, plataforma, etc.)
@@ -88,9 +184,17 @@ squads/product-blueprint-squad/
 - Público-alvo declarado vs. inferido
 - Complexidade estimada (simples, moderado, complexo)
 
-**Routing matrix:**
-- Sempre aciona todos os 4 especialistas em sequência
-- Adapta o briefing para cada especialista com base no diagnóstico (ex: para infoproduto, o Product Modeler foca em módulos de conteúdo; para SaaS, em funcionalidades; para produto físico, em componentes)
+**Adaptation matrix (como o Chief adapta o briefing por tipo de produto):**
+
+| Tipo de Produto | Market Researcher foca em | Value Architect foca em | Product Modeler foca em | MVP Strategist foca em |
+|----------------|--------------------------|------------------------|------------------------|----------------------|
+| SaaS/App | TAM/SAM, churn benchmarks, feature comparison | Subscription models, freemium vs. paid, PLG vs. SLG | Funcionalidades e telas, integrations, APIs | Feature flags, beta program, usage metrics |
+| Infoproduto | Audience sophistication, content gaps, creator landscape | Price anchoring, perceived value, bundling | Módulos de conteúdo, aulas, materiais, certificação | Content drip, pilot cohort, completion rate |
+| Produto físico | Distribution channels, supply chain, seasonal demand | Manufacturing cost vs. perceived value, SKU strategy | Componentes, variações, embalagem, acessórios | Minimum viable SKU, pre-order validation |
+| Serviço | Service alternatives, buyer journey, trust factors | Productization level, pricing model, scalability | Etapas de entrega, touchpoints, SLAs | Pilot client, service scope minimization |
+| Marketplace | Two-sided market dynamics, chicken-egg problem | Network effects, take rate, value to each side | Seller experience, buyer experience, matching | Single-side MVP, supply-first vs. demand-first |
+
+**Routing:** Sempre aciona todos os 4 especialistas em sequência, adaptando o briefing conforme a matrix acima.
 
 **Entregável — Product Blueprint Report:**
 
@@ -169,8 +273,10 @@ Ações concretas e sequenciais para avançar com o produto.
 
 - **base_agent:** product-strategist
 - **id:** squads/product-blueprint-squad/agents/market-researcher
+- **name:** Market Researcher
 - **icon:** search
 - **execution:** inline
+- **skills:** web_search, web_fetch
 
 **Role:** Analista de mercado que mapeia o terreno competitivo, define personas detalhadas e identifica oportunidades e ameaças para o produto.
 
@@ -250,8 +356,10 @@ Ações concretas e sequenciais para avançar com o produto.
 
 - **base_agent:** product-strategist
 - **id:** squads/product-blueprint-squad/agents/value-architect
+- **name:** Value Architect
 - **icon:** target
 - **execution:** inline
+- **skills:** web_search, web_fetch
 
 **Role:** Estrategista de posicionamento que define como o produto se diferencia, comunica valor e sustenta um modelo de negócio viável.
 
@@ -343,8 +451,10 @@ Ações concretas e sequenciais para avançar com o produto.
 
 - **base_agent:** product-strategist
 - **id:** squads/product-blueprint-squad/agents/product-modeler
+- **name:** Product Modeler
 - **icon:** box
 - **execution:** inline
+- **skills:** web_search, web_fetch
 
 **Role:** Arquiteto de produto que transforma a estratégia em estrutura tangível — mapeia cada módulo/funcionalidade com justificativa e desenha a jornada completa do usuário.
 
@@ -432,8 +542,10 @@ Ações concretas e sequenciais para avançar com o produto.
 
 - **base_agent:** product-strategist
 - **id:** squads/product-blueprint-squad/agents/mvp-strategist
+- **name:** MVP Strategist
 - **icon:** filter
 - **execution:** inline
+- **skills:** web_search, web_fetch
 
 **Role:** Estrategista de priorização que define o que entra no MVP, o que fica para fases futuras e como fasear o lançamento para validar hipóteses com menor risco.
 
@@ -533,8 +645,10 @@ Ações concretas e sequenciais para avançar com o produto.
 
 - **base_agent:** product-strategist
 - **id:** squads/product-blueprint-squad/agents/blueprint-visual-designer
+- **name:** Blueprint Visual Designer
 - **icon:** layout
 - **execution:** inline
+- **skills:** frontend-design
 
 **Role:** Designer que gera a página HTML final — um one-pager visual que funciona como pitch para stakeholders e documentação de referência para o time, usando os mesmos padrões visuais da landing-page-squad.
 
@@ -697,16 +811,45 @@ Ações concretas e sequenciais para avançar com o produto.
 
 ---
 
-## 5. Base Agent
+## 5. Base Agent — `product-strategist`
 
 Todos os agentes herdam de `product-strategist` (novo, independente de `conversion-strategist`).
 
-O `product-strategist` define:
-- Calibration: voz estratégica e colaborativa, não prescritiva
-- Approach: diagnóstico antes de recomendação, frameworks sobre opiniões
-- Language: responde no idioma do usuário com acentuação perfeita
-- Tone: direto, confiante, sem jargão genérico — terminologia do setor do produto
-- Adaptação por tipo de produto: nunca tratar todos como SaaS
+**Calibration block (herdado por todos os agentes, pode ser overridden):**
+
+```markdown
+## Calibration
+- **Style:** Estratégico e colaborativo. Fala como um consultor sênior de produto
+  que está junto no projeto, não como alguém ditando regras de fora. Usa dados e
+  frameworks para embasar recomendações, mas mantém linguagem acessível.
+- **Approach:** Diagnóstico antes de recomendação. Nunca prescreve sem antes
+  entender o contexto. Frameworks sobre opiniões — toda recomendação é ancorada
+  em um framework nomeado, não em preferência pessoal. Adapta profundidade e
+  terminologia ao tipo de produto (SaaS, físico, infoproduto, serviço, marketplace).
+- **Language:** Responde SEMPRE no idioma do usuário. Acentuação perfeita
+  (português: ã, é, ç, ô; espanhol: ñ, á; etc.). Se o briefing é em português,
+  todo o output é em português. Atributo `lang` correto no HTML.
+- **Tone:** Direto e confiante, sem ser arrogante. Terminologia do setor do
+  produto, nunca jargão genérico de consultoria ("soluções inovadoras",
+  "transformação digital", "otimize seus processos" são PROIBIDOS). Prefere
+  linguagem concreta e específica ao domínio do produto.
+- **Adaptation:** Nunca tratar todos os tipos de produto como SaaS. Cada tipo
+  de produto tem vocabulário, métricas, jornadas e modelos diferentes. O agente
+  deve adaptar sua análise ao tipo diagnosticado pelo Chief.
+```
+
+---
+
+## 5.1 Memory Template
+
+Conteúdo inicial de `_memory/memories.md`:
+
+```markdown
+# Product Blueprint Squad — Shared Memory
+
+<!-- Squad-specific memories and learnings will be stored here -->
+<!-- Format: date, context, learning -->
+```
 
 ---
 
