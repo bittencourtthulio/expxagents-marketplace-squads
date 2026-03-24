@@ -1,0 +1,121 @@
+squad:
+  code: meta-ads-squad
+  name: Meta Ads Squad
+  description: "Complete Meta campaign builder — from brand briefing to creatives, copies, Reels, ad set configurations, and a visual HTML campaign presentation."
+  icon: zap
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - meta-ads
+    - facebook-ads
+    - instagram-ads
+    - campaign
+    - creatives
+    - reels
+    - remotion
+    - paid-media
+    - remarketing
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Marketers, agencies, media buyers, growth teams, and solopreneurs building Meta advertising campaigns"
+  platform: "Report"
+  format: "meta-campaign"
+
+  skills:
+    - web_search
+    - web_fetch
+    - frontend-design
+    - google-gemini-3-pro
+    - remotion
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: campaign-chief
+      name: Campaign Strategist Chief
+      icon: zap
+      prompt: agents/campaign-chief.agent.md
+    - id: audience-strategist
+      name: Audience Strategist
+      icon: users
+      prompt: agents/audience-strategist.agent.md
+    - id: creative-director
+      name: Creative Director
+      icon: image
+      prompt: agents/creative-director.agent.md
+    - id: ad-copywriter
+      name: Ad Copywriter
+      icon: edit
+      prompt: agents/ad-copywriter.agent.md
+    - id: reels-producer
+      name: Reels Producer
+      icon: film
+      prompt: agents/reels-producer.agent.md
+    - id: media-planner
+      name: Media Planner
+      icon: bar-chart
+      prompt: agents/media-planner.agent.md
+    - id: campaign-presenter
+      name: Campaign Presenter
+      icon: layout
+      prompt: agents/campaign-presenter.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: campaign-chief
+        label: Receive briefing, validate API keys, diagnose campaign objective and brand context
+        execution: inline
+      - id: step-02
+        agent: audience-strategist
+        label: Segment audiences by temperature (cold/warm/hot), define remarketing and lookalike strategies
+        deliverFrom: campaign-chief
+        execution: inline
+      - id: step-03
+        agent: creative-director
+        label: Define creative direction and generate images via Gemini for all formats (4:5, 9:16, 1.91:1)
+        deliverFrom: campaign-chief
+        execution: inline
+        skill: google-gemini-3-pro
+      - id: step-04
+        agent: ad-copywriter
+        label: Write copies for each creative, placement, and audience temperature
+        deliverFrom: campaign-chief
+        execution: inline
+      - id: step-05
+        agent: reels-producer
+        label: Generate Remotion code with Gemini images and render final Reels videos
+        deliverFrom: campaign-chief
+        execution: inline
+        skill: remotion
+      - id: step-06
+        agent: media-planner
+        label: Structure campaigns, ad sets, budgets, placements, and Meta configurations
+        deliverFrom: campaign-chief
+        execution: inline
+      - id: step-07
+        agent: campaign-chief
+        label: Synthesize Meta Campaign Report from all specialist outputs
+        deliverFrom: campaign-chief
+        execution: inline
+        output: meta-campaign-report.md
+      - id: step-08
+        agent: campaign-chief
+        label: Quality checkpoint — review report completeness before HTML generation
+        deliverFrom: campaign-chief
+        execution: inline
+        checkpoint: true
+        on_reject: step-07
+      - id: step-09
+        agent: campaign-presenter
+        label: Generate HTML campaign presentation from the approved Meta Campaign Report
+        deliverFrom: campaign-chief
+        execution: inline
+        skill: frontend-design
+        output: meta-campaign.html

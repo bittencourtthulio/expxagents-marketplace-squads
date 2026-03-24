@@ -15,6 +15,7 @@ Community squads for the [ExpxAgents](https://expxagents.dev) marketplace.
 | design-squad | development | 7 | Design systems, UX, UI, and DesignOps |
 | expxagents-mastery | development | 7 | Master the ExpxAgents platform |
 | hormozi-squad | commercial | 10 | Alex Hormozi's business scaling frameworks |
+| meta-ads-squad | marketing | 7 | Complete Meta campaign builder — creatives, copies, Reels, and campaign structure |
 | movement | marketing | 7 | Build movements that transcend brands |
 | product-blueprint-squad | strategy | 6 | Strategic product architecture — from briefing to blueprint |
 | storytelling | marketing | 9 | Story development with legendary frameworks |
