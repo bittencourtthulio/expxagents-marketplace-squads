@@ -1,0 +1,96 @@
+squad:
+  code: social-media-squad
+  name: Social Media Squad
+  description: Complete social media positioning strategy across Instagram, Facebook, TikTok, LinkedIn, YouTube, Google My Business, and Blog SEO with brand voice, audience analysis, content calendars, and platform-specific tactics
+  icon: share-2
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - social-media
+    - instagram
+    - facebook
+    - tiktok
+    - linkedin
+    - youtube
+    - google-my-business
+    - blog-seo
+    - content-calendar
+    - brand-voice
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Social media managers, business owners, agencies, and marketing teams building organic social media presence"
+  platform: "Report"
+  format: "social-media-strategy"
+
+  skills:
+    - web_search
+    - web_fetch
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: social-media-chief
+      name: Social Media Strategist Chief
+      icon: share-2
+      prompt: agents/social-media-chief.agent.md
+    - id: brand-voice-strategist
+      name: Brand Voice Strategist
+      icon: mic
+      prompt: agents/brand-voice-strategist.agent.md
+    - id: audience-analyst
+      name: Audience Analyst
+      icon: users
+      prompt: agents/audience-analyst.agent.md
+    - id: content-calendar-architect
+      name: Content Calendar Architect
+      icon: calendar
+      prompt: agents/content-calendar-architect.agent.md
+    - id: meta-specialist
+      name: Meta Platforms Specialist
+      icon: instagram
+      prompt: agents/meta-specialist.agent.md
+    - id: short-video-specialist
+      name: Short Video Specialist
+      icon: video
+      prompt: agents/short-video-specialist.agent.md
+    - id: professional-content-specialist
+      name: Professional Content Specialist
+      icon: linkedin
+      prompt: agents/professional-content-specialist.agent.md
+    - id: local-presence-specialist
+      name: Local Presence Specialist
+      icon: map-pin
+      prompt: agents/local-presence-specialist.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: social-media-chief
+        label: Receive briefing, diagnose brand positioning and channel priorities
+        execution: inline
+      - id: step-02
+        agent: social-media-chief
+        label: Route to Brand Voice Strategist and Audience Analyst for positioning foundation
+        deliverFrom: social-media-chief
+        execution: inline
+      - id: step-03
+        agent: social-media-chief
+        label: Route to Content Calendar Architect for pillar and calendar strategy
+        deliverFrom: social-media-chief
+        execution: inline
+      - id: step-04
+        agent: social-media-chief
+        label: Route to platform specialists for channel-specific adaptations
+        deliverFrom: social-media-chief
+        execution: inline
+      - id: step-05
+        agent: social-media-chief
+        label: Synthesize Social Media Strategy Report with HTML presentation page
+        deliverFrom: social-media-chief
+        execution: inline
