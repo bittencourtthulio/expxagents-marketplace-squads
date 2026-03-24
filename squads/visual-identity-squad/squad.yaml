@@ -1,0 +1,132 @@
+squad:
+  code: visual-identity-squad
+  name: Visual Identity Squad
+  description: Complete visual identity kit — logo variations, material mockups, stationery, brand guidelines, and immersive HTML presentation
+  icon: palette
+  version: "1.0.0"
+  category: marketing
+  tags:
+    - visual-identity
+    - logo
+    - branding
+    - mockup
+    - brand-assets
+
+  company: "_expxagents/_memory/company.md"
+  preferences: "_expxagents/_memory/preferences.md"
+  memory: "_memory/memories.md"
+
+  target_audience: "Founders, brand managers, and designers"
+  platform: "Report"
+  format: "visual-identity-kit"
+
+  skills:
+    - web_search
+    - web_fetch
+    - frontend-design
+
+  schedule:
+    enabled: true
+
+  data: []
+
+  agents:
+    - id: visual-identity-chief
+      name: Visual Identity Chief
+      icon: palette
+      prompt: agents/visual-identity-chief.agent.md
+    - id: prompt-engineer
+      name: Prompt Engineer
+      icon: wand
+      prompt: agents/prompt-engineer.agent.md
+    - id: logo-designer
+      name: Logo Designer
+      icon: pen-tool
+      prompt: agents/logo-designer.agent.md
+    - id: mockup-artist
+      name: Mockup Artist
+      icon: image
+      prompt: agents/mockup-artist.agent.md
+    - id: stationery-designer
+      name: Stationery Designer
+      icon: file-text
+      prompt: agents/stationery-designer.agent.md
+    - id: brand-guidelines-writer
+      name: Brand Guidelines Writer
+      icon: book-open
+      prompt: agents/brand-guidelines-writer.agent.md
+    - id: presentation-designer
+      name: Presentation Designer
+      icon: monitor
+      prompt: agents/presentation-designer.agent.md
+    - id: quality-reviewer
+      name: Quality Reviewer
+      icon: check-circle
+      prompt: agents/quality-reviewer.agent.md
+
+  pipeline:
+    steps:
+      - id: step-01
+        agent: visual-identity-chief
+        label: Receive visual briefing and validate Gemini API key
+        execution: inline
+
+      - id: step-02
+        agent: visual-identity-chief
+        label: Craft all image generation prompts for Gemini
+        deliverFrom: visual-identity-chief
+        execution: inline
+        output: step-02-prompts.md
+
+      - id: step-03
+        agent: visual-identity-chief
+        label: Generate 7 logo variations via Gemini 3 Pro Image
+        deliverFrom: visual-identity-chief
+        execution: inline
+        output: logos/
+
+      - id: step-04
+        agent: visual-identity-chief
+        label: Present logos for approval checkpoint
+        deliverFrom: visual-identity-chief
+        execution: inline
+        checkpoint: true
+        on_reject: step-02
+
+      - id: step-05
+        agent: visual-identity-chief
+        label: Generate material mockups and corporate stationery
+        deliverFrom: visual-identity-chief
+        execution: inline
+        parallel_agents: true
+        output: mockups/,stationery/
+
+      - id: step-06
+        agent: visual-identity-chief
+        label: Document brand usage guidelines
+        deliverFrom: visual-identity-chief
+        execution: inline
+        output: brand-guidelines.md
+
+      - id: step-07
+        agent: visual-identity-chief
+        label: Quality review of all generated assets
+        deliverFrom: visual-identity-chief
+        execution: inline
+        checkpoint: true
+        on_reject: step-05
+
+      - id: step-08
+        agent: visual-identity-chief
+        label: Generate immersive HTML presentation with Three.js
+        deliverFrom: visual-identity-chief
+        execution: inline
+        output: visual-identity-presentation.html
+        skill: frontend-design
+
+      - id: step-09
+        agent: visual-identity-chief
+        label: Final checkpoint, memory update, and delivery
+        deliverFrom: visual-identity-chief
+        execution: inline
+        checkpoint: true
