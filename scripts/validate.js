@@ -4,7 +4,7 @@ import { join, dirname } from 'path';
 
 const VALID_CATEGORIES = [
   'development', 'marketing', 'commercial', 'support',
-  'hr', 'finance', 'operations', 'general'
+  'hr', 'finance', 'operations', 'general', 'strategy'
 ];
 
 let errors = 0;
